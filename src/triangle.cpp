@@ -67,7 +67,7 @@ void Triangle::createVertexBuffer()
 void Triangle::createRenderPipelineState()
 {
   // Uses helper function to load the shaders - using pre-compiled shaders is another approach
-  const std::string shaderPath = "../src/shaders/vertex.metal";
+  const std::string shaderPath = "./src/shaders/vertex.metal";
   NS::Error *error{nullptr}; // Used to catch errors when creating the library
   MTL::Library *library{nullptr};
 
