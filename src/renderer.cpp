@@ -1,7 +1,8 @@
 #include "renderer.h"
 
 Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), window(window),
-triangle(nullptr)
+                                     triangle(nullptr), previousTime(std::chrono::high_resolution_clock::now()), totalTime(0.0),
+                                     lastPrintedSecond(-1), frames(0)
 {
   // Get device from the windows metal layer
   device = window.getMetalLayer()->device();
@@ -30,16 +31,14 @@ Renderer::~Renderer()
 void Renderer::render()
 {
 
-
-
   while (!glfwWindowShouldClose(window.getGLFWWindow()))
   {
     glfwPollEvents();
-        #define LOG
-        #ifdef LOG
-        logFPS();
-        #endif /*LOG*/
-    { // create local scope
+    // #define LOG
+#ifdef LOG
+    logFPS();
+#endif /*LOG*/
+    {  // create local scope
       NS::AutoreleasePool *pool = NS::AutoreleasePool::alloc()->init();
       CA::MetalDrawable *drawable = window.getMetalLayer()->nextDrawable();
       if (!drawable)
@@ -59,17 +58,17 @@ void Renderer::render()
       colorAttachment->setClearColor(MTL::ClearColor(4.0, 2.0, 5.0, 1.0));
       colorAttachment->setStoreAction(MTL::StoreActionStore);
 
-      // Command encoder
-      #ifdef STATIC_CAST_ENCODER
+// Command encoder
+#ifdef STATIC_CAST_ENCODER
       // Command encoder is a generic encoder for multiple uses
       MTL::CommandEncoder *encoder = commandBuffer->renderCommandEncoder(renderPass);
 
       // Encode commands for the triangle
       triangle->encodeRenderCommands(static_cast<MTL::RenderCommandEncoder *>(encoder));
-      #endif /* STATIC_CAST_ENCODER */
+#endif /* STATIC_CAST_ENCODER */
 
-      MTL::RenderCommandEncoder* encoder = commandBuffer->renderCommandEncoder(renderPass);
-      triangle->encodeRenderCommands(encoder);    // Needs a RenderCommandEncoder, NOT CommandEncoder
+      MTL::RenderCommandEncoder *encoder = commandBuffer->renderCommandEncoder(renderPass);
+      triangle->encodeRenderCommands(encoder); // Needs a RenderCommandEncoder, NOT CommandEncoder
 
       encoder->endEncoding();
 
@@ -84,29 +83,30 @@ void Renderer::render()
   }
 }
 
-void Renderer::logFPS(){
+void Renderer::logFPS()
+{
   using Clock = std::chrono::high_resolution_clock;
-  auto previousTime = Clock::now(); // Store the starting time
-  double totalTime = 0.0;           // Total elapsed time in seconds
-  int lastPrintedSecond = -1;       // Track the last second that was printed
-  int frames {0};
-        // Calculate delta time
-        auto currentTime = Clock::now();
-        std::chrono::duration<double> deltaTime = currentTime - previousTime;
-        previousTime = currentTime;
 
-        // increment frame
-        ++frames;
+  // Calculate delta time
+  auto currentTime = Clock::now();
+  std::chrono::duration<double> deltaTime = currentTime - previousTime;
+  previousTime = currentTime;
 
-        // Accumulate total time
-        totalTime += deltaTime.count();
+  // Increment frame count
+  ++frames;
 
-        // Print total time only once per second
-        int currentSecond = static_cast<int>(totalTime);
-        if (currentSecond > lastPrintedSecond) {
-            std::cout << "Total Time: " << currentSecond << " seconds" << std::endl;
-            std::cout << "FPS: " << frames  << std::endl;
-            lastPrintedSecond = currentSecond; // update the last printed second
-            frames = 0;
-        }
+  // Accumulate total time
+  totalTime += deltaTime.count();
+
+  // Print FPS once per second
+  int currentSecond = static_cast<int>(totalTime);
+  if (currentSecond > lastPrintedSecond)
+  {
+    std::cout << "Total Time: " << currentSecond << " seconds" << std::endl;
+    std::cout << "FPS: " << frames << std::endl;
+
+    // Update the last printed second and reset frame counter
+    lastPrintedSecond = currentSecond;
+    frames = 0;
+  }
 }

@@ -162,6 +162,7 @@ void Triangle::encodeRenderCommands(MTL::RenderCommandEncoder *encoder)
     std::cerr << "Invalid encoder" << std::endl;
     return;
   }
+  //encoder->setTriangleFillMode(MTL::TriangleFillMode::TriangleFillModeLines);
   // set renderpipeline state using encoder
   encoder->setRenderPipelineState(pipelineState);
   // Set vertex buffer

@@ -24,10 +24,14 @@ public:
 
 private:
   void logFPS();
-  MTL::Device* device;
-  MTL::CommandQueue* commandQueue;
-  Window& window;
+  MTL::Device *device;
+  MTL::CommandQueue *commandQueue;
+  Window &window;
 
-  Triangle* triangle;
+  Triangle *triangle;
 
+  std::chrono::high_resolution_clock::time_point previousTime;
+  double totalTime;
+  int lastPrintedSecond;
+  int frames;
 };
