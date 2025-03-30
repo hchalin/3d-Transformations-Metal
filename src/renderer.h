@@ -7,6 +7,7 @@
 
 #include "window.h"
 #include "triangle.h"
+#include "quad.h"
 
 #include <iostream>
 
@@ -28,7 +29,10 @@ private:
   MTL::CommandQueue *commandQueue;
   Window &window;
 
+  // Scene objects
   Triangle *triangle;
+  Quad* quad;
+
 
   std::chrono::high_resolution_clock::time_point previousTime;
   double totalTime;

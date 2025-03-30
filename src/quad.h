@@ -1,28 +1,27 @@
 #pragma once
 
 #include <iostream>
-
 #include <Metal/Metal.hpp>
-/*
-A lot of this code is duplicated for all objects. Consider creating an
-abstract base class of an object, and deriving primatives you want
-*/
 
-class Triangle {
+class Quad {
+
   public:
-    Triangle() = default;
-    Triangle(MTL::Device* device);
-    ~Triangle();
+    Quad() = default;
+    Quad(MTL::Device* device);
+    ~Quad();
 
     void encodeRenderCommands(MTL::RenderCommandEncoder* encoder);
 
+
   private:
+    //Methods
     void createVertexBuffer();
     void createRenderPipelineState();
 
+    // Members
     MTL::Device* device;
     MTL::Buffer* vertexBuffer;
+    MTL::Buffer* indexBuffer;
     MTL::RenderPipelineState* pipelineState;
-
 
 };

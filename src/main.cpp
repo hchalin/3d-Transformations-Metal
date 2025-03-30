@@ -32,8 +32,6 @@ int main(){
   try {
     Window window;
     Renderer renderer(window);
-
-    renderer.render();
   }
   catch (const std::exception &e)
   {
@@ -45,38 +43,3 @@ int main(){
   glfwTerminate();
   return 0;
 }
-
-#ifdef OLD
-int main()
-{
-  if (!glfwInit())
-  {
-      std::cerr << "Failed to initialize GLFW window!" << std::endl;
-      return -1;
-  }
-
-  // disable GLFW's default behavior of creating an OpenGL context
-  glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-
-  GLFWwindow * glfwWindow = glfwCreateWindow(800, 600, "Hello Metal", nullptr, nullptr);
-
-  MTL::Device * device = MTL::CreateSystemDefaultDevice();
-
-  CA::MetalLayer* metalLayer = CA::MetalLayer::layer()->retain();
-  metalLayer->setDevice(device);
-  metalLayer->setPixelFormat(MTL::PixelFormat::PixelFormatBGRA8Unorm);
-
-  NS::Window * window = get_ns_window(glfwWindow, metalLayer)->retain();
-
-  while(!glfwWindowShouldClose(glfwWindow)){
-    glfwPollEvents();
-  }
-
-  window->release();
-  metalLayer->release();
-
-  glfwDestroyWindow(glfwWindow);
-  glfwTerminate();
-  return 0;
-}
-#endif

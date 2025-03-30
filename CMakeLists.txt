@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(test
  src/triangle.cpp
+ src/quad.cpp
  src/shaders/readShaderFile.cpp
  src/backend/glfw_adaptor.mm
  src/window.cpp

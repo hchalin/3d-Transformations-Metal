@@ -12,8 +12,15 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
   // Create triangle
   triangle = new Triangle(device);
 
+  // Create quad
+  quad = new Quad(device);
+
   // Create the command queue (created from the device)
   commandQueue = device->newCommandQueue()->retain();
+
+
+  // Render
+  render();
 }
 
 Renderer::~Renderer()
