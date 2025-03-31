@@ -1,5 +1,7 @@
 #include "renderer.h"
 
+#define QUAD
+
 Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), window(window),
                                      triangle(nullptr), previousTime(std::chrono::high_resolution_clock::now()), totalTime(0.0),
                                      lastPrintedSecond(-1), frames(0)
@@ -10,14 +12,13 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
     throw std::runtime_error("Failed to get Metal Device");
 
   // Create triangle
-  triangle = new Triangle(device);
+  //triangle = new Triangle(device);
 
   // Create quad
-  quad = new Quad(device);
+   quad = new Quad(device);
 
   // Create the command queue (created from the device)
   commandQueue = device->newCommandQueue()->retain();
-
 
   // Render
   render();
@@ -25,8 +26,17 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
 
 Renderer::~Renderer()
 {
-  delete triangle;
-  triangle = nullptr;
+  if (triangle)
+  {
+    delete triangle;
+    triangle = nullptr;
+  }
+
+  if (quad)
+  {
+    delete quad;
+    quad = nullptr;
+  }
 
   if (commandQueue)
     commandQueue->release();
@@ -75,8 +85,16 @@ void Renderer::render()
 #endif /* STATIC_CAST_ENCODER */
 
       MTL::RenderCommandEncoder *encoder = commandBuffer->renderCommandEncoder(renderPass);
-      triangle->encodeRenderCommands(encoder); // Needs a RenderCommandEncoder, NOT CommandEncoder
+      #ifdef TRIANGLE
+      if (triangle)
+        triangle->encodeRenderCommands(encoder); // Needs a RenderCommandEncoder, NOT CommandEncoder
 
+      #endif /* TRIANGLE */
+      #ifdef QUAD
+      if (quad)
+        quad->encodeRenderCommands(encoder);
+
+      #endif /* QUAD */
       encoder->endEncoding();
 
       // Present

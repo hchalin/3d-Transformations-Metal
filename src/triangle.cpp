@@ -67,7 +67,7 @@ void Triangle::createVertexBuffer()
 void Triangle::createRenderPipelineState()
 {
   // Uses helper function to load the shaders - using pre-compiled shaders is another approach
-  const std::string shaderPath = "./src/shaders/vertex.metal";
+  const std::string shaderPath = "./src/shaders/shaders.metal";
   NS::Error *error{nullptr}; // Used to catch errors when creating the library
   MTL::Library *library{nullptr};
 
@@ -82,14 +82,9 @@ void Triangle::createRenderPipelineState()
 
   // Create library
   if (!library)
-  {
-    std::cerr << "Failed to load default metal library: " << error->localizedDescription()->utf8String() << std::endl;
-    return;
-  }
+    throw std::runtime_error("Failed to create triangle shader library");
   else
-  {
-    std::cout << "Library found" << std::endl;
-  }
+    std::cout << "Traingle library created" << std::endl;
 
   // Get both vertex and fragment functions
   MTL::Function* vertexFunction = library->newFunction(NS::String::string("vertex_main", NS::UTF8StringEncoding));

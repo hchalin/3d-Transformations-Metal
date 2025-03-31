@@ -35,7 +35,7 @@ int main(){
   }
   catch (const std::exception &e)
   {
-    std::cerr << "Error: " << e.what() << std::endl;
+    std::cerr << "Error from main: " << e.what() << std::endl;
     glfwTerminate();
     return -1;
   }
