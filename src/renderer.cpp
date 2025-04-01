@@ -1,6 +1,6 @@
 #include "renderer.h"
 
-#define QUAD
+#define TRIANGLE
 
 Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), window(window),
                                      triangle(nullptr), previousTime(std::chrono::high_resolution_clock::now()), totalTime(0.0),
@@ -12,10 +12,12 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
     throw std::runtime_error("Failed to get Metal Device");
 
   // Create triangle
-  //triangle = new Triangle(device);
+  triangle = new Triangle(device);
 
   // Create quad
-   quad = new Quad(device);
+   //quad = new Quad(device);
+
+
 
   // Create the command queue (created from the device)
   commandQueue = device->newCommandQueue()->retain();
@@ -87,7 +89,7 @@ void Renderer::render()
       MTL::RenderCommandEncoder *encoder = commandBuffer->renderCommandEncoder(renderPass);
       #ifdef TRIANGLE
       if (triangle)
-        triangle->encodeRenderCommands(encoder); // Needs a RenderCommandEncoder, NOT CommandEncoder
+      triangle->encodeRenderCommands(encoder); // Needs a RenderCommandEncoder, NOT CommandEncoder
 
       #endif /* TRIANGLE */
       #ifdef QUAD

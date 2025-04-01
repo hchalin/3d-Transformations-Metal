@@ -6,8 +6,9 @@
 #include <AppKit/AppKit.hpp>
 
 #include "window.h"
-#include "triangle.h"
-#include "quad.h"
+//#include "triangle.h"
+//#include "quad.h"
+#include "primative.h"
 
 #include <iostream>
 

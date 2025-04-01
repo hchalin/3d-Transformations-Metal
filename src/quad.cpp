@@ -172,12 +172,12 @@ void Quad::encodeRenderCommands(MTL::RenderCommandEncoder *encoder)
   encoder->setRenderPipelineState(pipelineState);
 
   // Bind the vertex buffer
-  encoder->setVertexBuffer(vertexBuffer, 0, 0);
+  encoder->setVertexBuffer(vertexBuffer, 0, 0);       // Tell the GPU to use the indices defined, instead of repeated Vertices
 
   // Draw the quad using the index buffer
   encoder->drawIndexedPrimitives(MTL::PrimitiveType::PrimitiveTypeTriangle,
                                   6, // Number of indices
                                   MTL::IndexType::IndexTypeUInt16,
                                   indexBuffer,
-                                  0); // 
+                                  0); //
 }
