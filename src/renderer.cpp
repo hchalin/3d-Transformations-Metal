@@ -1,6 +1,7 @@
 #include "renderer.h"
 
 #define TRIANGLE
+#define QUAD
 
 Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), window(window),
                                      triangle(nullptr), previousTime(std::chrono::high_resolution_clock::now()), totalTime(0.0),
@@ -98,11 +99,13 @@ void Renderer::render()
       #ifdef TRIANGLE
       if (triangle)
       triangle->encodeRenderCommands(encoder); // Needs a RenderCommandEncoder, NOT CommandEncoder
+      triangle->draw(encoder);
 
       #endif /* TRIANGLE */
       #ifdef QUAD
       if (quad)
         quad->encodeRenderCommands(encoder);
+        quad->draw(encoder);
 
       #endif /* QUAD */
       encoder->endEncoding();

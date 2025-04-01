@@ -1,7 +1,12 @@
 cmake_minimum_required(VERSION 3.15)
 project(test VERSION 1.0.0)
 
+# Set C++ standard
 set(CMAKE_CXX_STANDARD 20)
+
+# Enable debug symbols
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
 
 
 add_executable(test
