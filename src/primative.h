@@ -19,18 +19,19 @@ public:
   Primative(MTL::Device *device);
   virtual ~Primative(); // Special case for each deallocation
 
-  void encodeRenderCommands(MTL::RenderCommandEncoder* encoder);
+  void encodeRenderCommands(MTL::RenderCommandEncoder *encoder);
 
 private:
   void initialize();
-  void createVertexBuffer(const std::vector<Vertex> vertices);
-  void createRenderPipelineState();
 
   MTL::Device *device;
   MTL::Buffer *vertexBuffer;
+  MTL::Buffer *indexBuffer;
   MTL::RenderPipelineState *pipelineState;
 
 protected:
+  void createRenderPipelineState();
+  void createVertexBuffer(const std::vector<Vertex> vertices);
   virtual std::vector<Vertex> defineVertices() = 0;
 };
 
@@ -40,7 +41,7 @@ protected:
 class Triangle : public Primative
 {
 public:
-  Triangle(MTL::Device* device);
+  Triangle(MTL::Device *device);
   ~Triangle() = default;
 
 protected:
@@ -53,10 +54,12 @@ protected:
 class Quad : public Primative
 {
 public:
-  Quad(MTL::Device* device);
+  Quad(MTL::Device *device);
   ~Quad() override;
 
 private:
   virtual std::vector<Vertex> defineVertices() override;
+  void createIndexBuffer();
+
   MTL::Buffer *indexBuffer;
 };

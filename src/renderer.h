@@ -31,8 +31,12 @@ private:
   Window &window;
 
   // Scene objects
-  Triangle *triangle;
-  Quad* quad;
+  //Triangle *triangle;
+  //Quad* quad;
+
+  // New objs using abc
+  Primative* triangle;
+  Primative* quad;
 
 
   std::chrono::high_resolution_clock::time_point previousTime;

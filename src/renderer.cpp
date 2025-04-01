@@ -12,10 +12,18 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
     throw std::runtime_error("Failed to get Metal Device");
 
   // Create triangle
-  triangle = new Triangle(device);
+  #ifdef TRIANGLE
+  //triangle = new Triangle(device);
+   // Attempt to downcast to Derived*
+    triangle = dynamic_cast<Triangle*>(new Triangle(device));
+  #endif /* TRIANGLE */
 
   // Create quad
-   //quad = new Quad(device);
+
+  #ifdef QUAD
+  quad = new Quad(device);
+    quad = dynamic_cast<Quad*>(new Quad(device));
+  #endif /* QUAD */
 
 
 
