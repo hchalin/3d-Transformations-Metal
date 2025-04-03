@@ -1,24 +1,24 @@
 #include <metal_stdlib>
 using namespace metal;
 
-struct VertexIn {
-    float4 position [[attribute(0)]];
-};
+
 
 struct VertexOut {
     float4 position [[position]]; // Position in clip space
     float4 color;                 // Color to pass to the fragment shader
 };
 
-vertex VertexOut vertex_main(VertexIn in [[stage_in]]) {
+// TODO: decouple vertex attributes into separate buffers using vertexId
+    //constant packed_float4 *positions [[buffer(0)]],
+vertex VertexOut vertex_main(
+    constant float4 *positions [[buffer(0)]],
+    constant float4 *color [[buffer(1)]],
+    uint vertexID [[vertex_id]]
+    ) {
     VertexOut out;
-    out.position = in.position; // Pass position to clip space
-
+    out.position = positions[vertexID]; // Pass position to clip space
+    out.color = color[vertexID];
     // Compute color based on position
-    out.color = float4((in.position.x + 1.0) * 0.5, // Map x from [-1, 1] to [0, 1]
-                       (in.position.y + 1.0) * 0.5, // Map y from [-1, 1] to [0, 1]
-                       1.0 - ((in.position.x + in.position.y + 2.0) * 0.25), // Some variation for blue
-                       1.0); // Alpha is 1.0 (fully opaque)
 
     return out;
 }

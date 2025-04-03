@@ -4,17 +4,13 @@
 /*
 -------------------------------------------------------------------
   PRIMATIVE  ---------------------------------------------------------
+
+  Currently there are 2 types:
+    Triangle,
+    Quad
 -------------------------------------------------------------------
 */
-Primative::Primative(MTL::Device *device) : device(device),
-                                            vertexBuffer(nullptr),
-                                            indexBuffer(nullptr),
-                                            pipelineState(nullptr)
-{
-  // initialize();
-}
-
-void Primative::initialize()
+Primative::Primative(MTL::Device *device) : device(device)
 {
 }
 
@@ -42,17 +38,39 @@ Primative::~Primative()
 /*
     CREATE VERTEX BUFFER
 */
-void Primative::createVertexBuffer(const std::vector<Vertex> vertices)
+void Primative::createVertexBuffer(const std::vector<float4> &vertices)
 {
   if (vertices.empty())
     std::runtime_error("No vertices defined");
 
-  vertexBuffer = device->newBuffer(vertices.data(), vertices.size() * sizeof(Vertex), MTL::ResourceStorageModeManaged);
+  vertexBuffer = device->newBuffer(vertices.data(), vertices.size() * sizeof(float4), MTL::ResourceStorageModeManaged);
 
   if (!vertexBuffer)
     std::runtime_error("Failed to create vertex buffer");
-  else
-    std::cout << "BUFFER CREATED  W/ LENGTH: " << vertexBuffer->length() << std::endl;
+}
+
+/*
+    CREATE COLOR BUFFER
+*/
+void Primative::createColorBuffer(const std::vector<float4> &color)
+{
+  if (color.empty())
+    std::runtime_error("No color defined");
+
+  colorBuffer = device->newBuffer(color.data(), color.size() * sizeof(float4), MTL::ResourceStorageModeManaged);
+
+  if (!colorBuffer)
+    std::runtime_error("Failed to create vertex buffer");
+}
+
+/*
+    CREATE INDEX BUFFER
+*/
+void Primative::createIndexBuffer(const std::vector<uint16_t> &indices)
+{
+  indexBuffer = device->newBuffer(indices.data(), indices.size() * sizeof(uint16_t), MTL::ResourceStorageModeManaged);
+  if (indexBuffer)
+    std::cout << "Index buffer created" << std::endl;
 }
 
 /*
@@ -61,13 +79,13 @@ void Primative::createVertexBuffer(const std::vector<Vertex> vertices)
 void Primative::createRenderPipelineState()
 {
   // Uses helper function to load the shaders - using pre-compiled shaders is another approach
-  const std::string shaderPath = "./src/shaders/shaders.metal";
+  const std::string fileName = "shaders.metal";
   NS::Error *error{nullptr}; // Used to catch errors when creating the library
   MTL::Library *library{nullptr};
 
   try
   {
-    loadShaderFromFile(library, device, shaderPath);
+    loadShaderFromFile(library, device, fileName);
   }
   catch (const std::exception &e)
   {
@@ -77,8 +95,6 @@ void Primative::createRenderPipelineState()
   // Create library
   if (!library)
     throw std::runtime_error("Failed to create triangle shader library");
-  else
-    std::cout << "Library created" << std::endl;
 
   // Get both vertex and fragment functions
   MTL::Function *vertexFunction = library->newFunction(NS::String::string("vertex_main", NS::UTF8StringEncoding));
@@ -106,13 +122,24 @@ void Primative::createRenderPipelineState()
   colorAttachment->setPixelFormat(MTL::PixelFormat::PixelFormatBGRA8Unorm);
   colorAttachment->setBlendingEnabled(false); // This overwrites the entire color buffer, keep this in mind when rendering fog etc...
 
+  /*
+    OLD - no longer need the vertex descriptor
   // Create and configure the vertex descriptor
   MTL::VertexDescriptor *vertexDescriptor = MTL::VertexDescriptor::alloc()->init();
-  vertexDescriptor->layouts()->object(0)->setStride(sizeof(float) * 4);                        // Each vertex is a float4 (x, y, z, w)
+
+  // Position
+  vertexDescriptor->layouts()->object(0)->setStride(sizeof(Vertex));                           // Each vertex is a float4 (x, y, z, w)
   vertexDescriptor->attributes()->object(0)->setFormat(MTL::VertexFormat::VertexFormatFloat4); // float4 for position
-  vertexDescriptor->attributes()->object(0)->setOffset(0);                                     // Position starts at offset 0
+  vertexDescriptor->attributes()->object(0)->setOffset(offsetof(Vertex, position));            // Position starts at offset 0
   vertexDescriptor->attributes()->object(0)->setBufferIndex(0);                                // Use buffer index 0
+
+  // Set color attribute
+  vertexDescriptor->attributes()->object(1)->setFormat(MTL::VertexFormat::VertexFormatFloat4); // float4 for position
+  vertexDescriptor->attributes()->object(1)->setOffset(offsetof(Vertex, color));
+  vertexDescriptor->attributes()->object(1)->setBufferIndex(0); // Use buffer index 0
+
   pipelineDescriptor->setVertexDescriptor(vertexDescriptor);
+  */
 
   // Now create the renderPipelineState with the descriptor
   pipelineState = device->newRenderPipelineState(pipelineDescriptor, &error);
@@ -128,15 +155,11 @@ void Primative::createRenderPipelineState()
     std::cerr << "Invalid pipelineState" << std::endl;
     return;
   }
-  else
-  {
-    std::cout << "Render pipeline state created" << std::endl;
-  }
 
   // clean up
   pipelineDescriptor->release();
+  // vertexDescriptor->release();
   vertexFunction->release();
-  vertexDescriptor->release();
   fragmentFunction->release();
   library->release();
 }
@@ -158,7 +181,6 @@ void Primative::encodeRenderCommands(MTL::RenderCommandEncoder *encoder)
   if (!vertexBuffer)
     std::runtime_error("No Vertex Buffer");
 
-  std::cout << "READY TO ENCODE" << std::endl;
   if (!encoder)
   {
     std::cerr << "Invalid encoder" << std::endl;
@@ -167,9 +189,11 @@ void Primative::encodeRenderCommands(MTL::RenderCommandEncoder *encoder)
   // encoder->setTriangleFillMode(MTL::TriangleFillMode::TriangleFillModeLines);
   //  set renderpipeline state using encoder
   encoder->setRenderPipelineState(pipelineState);
-  // Set vertex buffer
-  encoder->setVertexBuffer(vertexBuffer, 0, 0);
 
+  // Set vertex buffer
+  encoder->setVertexBuffer(vertexBuffer, 0, 0); // Set vertexBuffer to buffer(0)
+  encoder->setVertexBuffer(colorBuffer, 0, 1);  // Set colorBuffer to buffer(1)
+  // Index buffer is set when calling drawIndexedPrimatives()
 }
 
 /*
@@ -179,26 +203,47 @@ void Primative::encodeRenderCommands(MTL::RenderCommandEncoder *encoder)
 */
 Triangle::Triangle(MTL::Device *device) : Primative(device)
 {
-  std::vector<Vertex> vertices = defineVertices(); // ERROR HERE: Dynamic cast??
-  Primative::createVertexBuffer(vertices);
+  createBuffers();
   Primative::createRenderPipelineState();
 }
 
-// Used base class destructor
-std::vector<Vertex> Triangle::defineVertices()
-{
-
-  std::cout << "Defining verts" << std::endl;
-  return std::vector<Vertex>{
-      {0.0, 0.5, 0.0, 1.0},
-      {-0.5, -0.5, 0.0, 1.0},
-      {0.5, -0.5, 0.0, 1.0}};
-}
-
+/*
+      Draw ------
+*/
 void Triangle::draw(MTL::RenderCommandEncoder *encoder)
 {
 
-  encoder->drawPrimitives(static_cast<MTL::PrimitiveType>(MTL::PrimitiveType::PrimitiveTypeTriangle), static_cast<NS::UInteger>(0), static_cast<NS::UInteger>(3));
+  std::cout << "Drawing triangle!" << std::endl;
+
+  encoder->drawIndexedPrimitives(MTL::PrimitiveType::PrimitiveTypeTriangle,
+                                 3, // Number of indices
+                                 MTL::IndexType::IndexTypeUInt16,
+                                 indexBuffer,
+                                 0); //
+}
+
+void Triangle::createBuffers()
+{
+  // Positions
+  std::vector<float4> positions = {
+      {0.0, 0.5, 0.0, 1.0},
+      {-0.5, -0.5, 0.0, 1.0},
+      {0.5, -0.5, 0.0, 1.0}};
+  Primative::createVertexBuffer(positions);
+
+  // Colors
+  std::vector<float4> color = {
+      {1.0, 0.0, 0.0, 1.0},
+      {1.0, 0.0, 0.0, 1.0},
+      {1.0, 0.0, 0.0, 1.0}};
+  Primative::createColorBuffer(color);
+
+  // Indexing
+  std::vector<uint16_t> indices = {0, 1, 2};
+  Primative::createIndexBuffer(indices);
+
+  // test
+  std::cout << "SUCCESS in creating Triangle buffers" << std::endl;
 }
 
 /*
@@ -208,9 +253,7 @@ void Triangle::draw(MTL::RenderCommandEncoder *encoder)
 */
 Quad::Quad(MTL::Device *device) : Primative(device), indexBuffer(nullptr)
 {
-  std::vector<Vertex> vertices = defineVertices(); // ERROR HERE: Dynamic cast??
-  Primative::createVertexBuffer(vertices);
-  createIndexBuffer();
+  createBuffers();
   Primative::createRenderPipelineState();
 }
 
@@ -224,38 +267,52 @@ Quad::~Quad()
   }
 }
 
-std::vector<Vertex> Quad::defineVertices()
+void Quad::createBuffers()
 {
-  return std::vector<Vertex>{
-      {-0.5, -0.5, 0.0, 1.0}, // Bottom Left
-      {-0.5, 0.5, 0.0, 1.0},  // Top Left
-      {0.5, 0.5, 0.0, 1.0},   // Top Right
-      {0.5, -0.5, 0.0, 1.0}}; // Bottom Right
-}
+  // Positions
+  std::vector<float4> positions = {
+      {-0.5, 0.5, 0.0, 1.0}, // Top Left
+      {0.5, 0.5, 0.0, 1.0},  // Top Right
+      {0.5, -0.5, 0.0, 1.0}, // Bottom Right
+      {-0.5, -0.5, 0.0, 1.0} // Bottom Left
+  };
+  Primative::createVertexBuffer(positions);
+  if (!vertexBuffer)
+    throw std::runtime_error("Vertex buffer failed to create");
 
-void Quad::createIndexBuffer()
-{
-  // Create the indices representing the two triangles
-  uint16_t indices[] = {
-      // First
-      1, 3, 0,
-      // Second
-      1, 2, 3};
+  // Colors
+  std::vector<float4> color = {
+      {0.0, 0.0, 1.0, 1.0},
+      {0.0, 0.0, 1.0, 1.0},
+      {0.0, 0.0, 1.0, 1.0},
+      {0.0, 0.0, 1.0, 1.0}};
 
-  indexBuffer = device->newBuffer(indices, sizeof(indices), MTL::ResourceStorageModeManaged);
+  Primative::createColorBuffer(color);
+  if (!colorBuffer)
+    throw std::runtime_error("Color buffer failed to create");
 
+  // Indexing
+  std::vector<uint16_t> indices = {
+      // First tringle
+      0, 2, 3,
+      // Second triangle
+      0, 1, 2};
+  //Primative::createIndexBuffer(indices);
+  indexBuffer = device->newBuffer(indices.data(), indices.size() * sizeof(float4), MTL::ResourceStorageModeManaged);
   if (!indexBuffer)
-  {
-    throw std::runtime_error("Failed to create index buffer");
-  }
-  else
-  {
-    std::cout << "Quad Index buffer created!" << std::endl;
-  }
+    throw std::runtime_error("Index buffer failed to create");
+
+  // test
+  std::cout << "SUCCESS in creating Quad buffers" << std::endl;
 }
 
 void Quad::draw(MTL::RenderCommandEncoder *encoder)
 {
+
+  if (!indexBuffer)
+    throw std::runtime_error("Index buffer failed to create");
+  else
+    std::cout << "Drawing quad!" << std::endl;
 
   // Draw the quad using the index buffer
   encoder->drawIndexedPrimitives(MTL::PrimitiveType::PrimitiveTypeTriangle,

@@ -2,6 +2,7 @@
 
 #define TRIANGLE
 #define QUAD
+//#define LOG
 
 Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), window(window),
                                      triangle(nullptr), previousTime(std::chrono::high_resolution_clock::now()), totalTime(0.0),
@@ -12,21 +13,18 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
   if (!device)
     throw std::runtime_error("Failed to get Metal Device");
 
-  // Create triangle
-  #ifdef TRIANGLE
-  //triangle = new Triangle(device);
-   // Attempt to downcast to Derived*
-    triangle = dynamic_cast<Triangle*>(new Triangle(device));
-  #endif /* TRIANGLE */
-
-  // Create quad
-
-  #ifdef QUAD
+// Create quad
+#ifdef QUAD
   quad = new Quad(device);
-    quad = dynamic_cast<Quad*>(new Quad(device));
-  #endif /* QUAD */
+  // quad = dynamic_cast<Quad*>(new Quad(device));
+#endif /* QUAD */
 
-
+// Create triangle
+#ifdef TRIANGLE
+  triangle = new Triangle(device);
+  // Attempt to downcast to Derived*
+  //Triangle* t_ptr = new Triangle(device);
+#endif /* TRIANGLE */
 
   // Create the command queue (created from the device)
   commandQueue = device->newCommandQueue()->retain();
@@ -37,6 +35,8 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
 
 Renderer::~Renderer()
 {
+    // FIXME: There is a segfault here when deallocating?
+    /*
   if (triangle)
   {
     delete triangle;
@@ -54,6 +54,7 @@ Renderer::~Renderer()
 
   if (device)
     device = nullptr;
+    */
 }
 
 void Renderer::render()
@@ -72,7 +73,8 @@ void Renderer::render()
       if (!drawable)
       {
         std::cerr << "Drawable is null!" << std::endl;
-        return;
+        pool->release();
+        break;
       }
 
       // Create command buffer per frame
@@ -86,28 +88,33 @@ void Renderer::render()
       colorAttachment->setClearColor(MTL::ClearColor(4.0, 2.0, 5.0, 1.0));
       colorAttachment->setStoreAction(MTL::StoreActionStore);
 
-// Command encoder
-#ifdef STATIC_CAST_ENCODER
-      // Command encoder is a generic encoder for multiple uses
-      MTL::CommandEncoder *encoder = commandBuffer->renderCommandEncoder(renderPass);
+      // TEST: Disable depth test
+      //renderPass->setDepthAttachment(nullptr);
 
-      // Encode commands for the triangle
-      triangle->encodeRenderCommands(static_cast<MTL::RenderCommandEncoder *>(encoder));
-#endif /* STATIC_CAST_ENCODER */
+// Command encoder
 
       MTL::RenderCommandEncoder *encoder = commandBuffer->renderCommandEncoder(renderPass);
-      #ifdef TRIANGLE
-      if (triangle)
-      triangle->encodeRenderCommands(encoder); // Needs a RenderCommandEncoder, NOT CommandEncoder
-      triangle->draw(encoder);
+      float currTime = sin(totalTime);
 
-      #endif /* TRIANGLE */
-      #ifdef QUAD
+      encoder->setVertexBytes(&currTime, sizeof(float), 11);
+
+#ifdef QUAD
       if (quad)
+      {
+
         quad->encodeRenderCommands(encoder);
         quad->draw(encoder);
+      }
 
-      #endif /* QUAD */
+#endif /* QUAD */
+#ifdef TRIANGLE
+      if (triangle)
+      {
+        triangle->encodeRenderCommands(encoder); // Needs a RenderCommandEncoder, NOT CommandEncoder
+        triangle->draw(encoder);
+      }
+
+#endif /* TRIANGLE */
       encoder->endEncoding();
 
       // Present
