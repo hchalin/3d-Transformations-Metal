@@ -1,0 +1,10 @@
+# ninja log v6
+33	1334	1743712213069550159	CMakeFiles/test.dir/src/backend/glfw_adaptor.mm.o	5e49be3fc2b3530d
+34	1296	1743712213070537666	CMakeFiles/test.dir/src/main.cpp.o	222d5e51f363879d
+33	1065	1743712213069360741	CMakeFiles/test.dir/src/shaders/readShaderFile.cpp.o	c9116ea503d790db
+34	1159	1743712213069726702	CMakeFiles/test.dir/src/window.cpp.o	40332e1284700514
+34	1168	1743712213069895037	CMakeFiles/test.dir/src/renderer.cpp.o	7265b4bd8f992047
+1334	1574	1743712214370195428	test	279ef216d63fc3f5
+33	1043	1743712213069113073	CMakeFiles/test.dir/src/primative.cpp.o	aff6b3aa077cb215
+32	342	1743712213068436319	CMakeFiles/test.dir/src/common/vec4.cpp.o	7985ff76960ae80f
+3	68	1743713211774959535	build.ninja	fbe91e27c35c8f22
