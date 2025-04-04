@@ -19,8 +19,6 @@ Primative::Primative(MTL::Device *device) : device(device)
 */
 Primative::~Primative()
 {
-  if (device)
-    device = nullptr;
 
   if (vertexBuffer)
   {
@@ -213,7 +211,6 @@ Triangle::Triangle(MTL::Device *device) : Primative(device)
 void Triangle::draw(MTL::RenderCommandEncoder *encoder)
 {
 
-  std::cout << "Drawing triangle!" << std::endl;
 
   encoder->drawIndexedPrimitives(MTL::PrimitiveType::PrimitiveTypeTriangle,
                                  3, // Number of indices
@@ -242,8 +239,6 @@ void Triangle::createBuffers()
   std::vector<uint16_t> indices = {0, 1, 2};
   Primative::createIndexBuffer(indices);
 
-  // test
-  std::cout << "SUCCESS in creating Triangle buffers" << std::endl;
 }
 
 /*
@@ -311,8 +306,6 @@ void Quad::draw(MTL::RenderCommandEncoder *encoder)
 
   if (!indexBuffer)
     throw std::runtime_error("Index buffer failed to create");
-  else
-    std::cout << "Drawing quad!" << std::endl;
 
   // Draw the quad using the index buffer
   encoder->drawIndexedPrimitives(MTL::PrimitiveType::PrimitiveTypeTriangle,
@@ -320,4 +313,103 @@ void Quad::draw(MTL::RenderCommandEncoder *encoder)
                                  MTL::IndexType::IndexTypeUInt16,
                                  indexBuffer,
                                  0); //
+}
+
+//-------------------------------------------------------------------
+//    Circle  ---------------------------------------------------------
+//-------------------------------------------------------------------
+
+Circle::Circle(MTL::Device *device): Primative(device) {
+    // Create the vertex buffer for the circle
+    createBuffers();
+    Primative::createRenderPipelineState();
+}
+/*
+    Destructor
+*/
+Circle::~Circle()
+{
+
+
+    if (vertexBuffer)
+    {
+        vertexBuffer->release();
+        vertexBuffer = nullptr;
+    }
+
+    if (pipelineState)
+    {
+        pipelineState->release();
+        pipelineState = nullptr;
+    }
+
+}
+
+void Circle::createBuffers() {
+   /*
+    * Position
+    */
+   std::vector<float4> positions;
+   unsigned int vertexCount {100};
+   float angle = (2 * M_PI) / vertexCount;
+   positions.push_back({0.0, 0.0, 0.0, 1.0});
+   for(int i {1}; i <= vertexCount; ++i){
+       float x = radius * cos(i * angle);
+       float y = radius * sin(i * angle);
+       positions.emplace_back(x, y, 0.0, 1.0);
+   }
+
+   Primative::createVertexBuffer(positions);
+   if (!vertexBuffer) {
+       throw std::runtime_error("Failed to create circles vertexBuffer");
+   }
+
+   /*
+    * Color
+    */
+   std::vector<float4> color;
+   for (int i {0}; i <= vertexCount; ++i){
+       color.emplace_back(0.4, 0.2, 0.3, 1.0);
+   }
+   Primative::createColorBuffer(color);
+    if (!colorBuffer)
+        throw std::runtime_error("Color buffer failed to create");
+
+    /*
+     * Indices
+     */
+    std::vector<uint16_t> indices;
+    const uint16_t centerIdx = 0;
+    for (uint16_t i = 1; i <= vertexCount; ++i) {
+        // Create two triangles for each segment of the circle
+        indices.push_back(centerIdx); // Center vertex
+        indices.push_back(i);
+        if (i == vertexCount) {
+            indices.push_back(1); // Connect back to the first vertex
+        } else {
+            indices.push_back(i + 1);
+        }
+    }
+
+    // Add the last triangle to close the circle
+    for (uint16_t i = 1; i < vertexCount; ++i) {
+        indices.push_back(0); // Center vertex
+        indices.push_back(i);
+        indices.push_back(i + 1);
+    }
+
+    indexBuffer = device->newBuffer(indices.data(), indices.size() * sizeof(uint16_t), MTL::ResourceStorageModeManaged );
+    if (!indexBuffer)
+        throw std::runtime_error("Index buffer failed to create");
+}
+
+void Circle::draw(MTL::RenderCommandEncoder *encoder) {
+    // This is the draw call
+    std::cout << "Drawing circle" << std::endl;
+
+    encoder->drawIndexedPrimitives(MTL::PrimitiveType::PrimitiveTypeTriangle,
+                                   indexBuffer->length() / sizeof(uint16_t), // Number of indices
+                                   MTL::IndexType::IndexTypeUInt16,
+                                   indexBuffer,
+                                   0); //
 }

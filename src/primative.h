@@ -1,10 +1,12 @@
 #pragma once
 
 #include <iostream>
+#include <math.h>
 
 #include <Metal/Metal.hpp>
 #include "common/common.h"
 #include "common/vec4.h"
+
 
 class Primative
 {
@@ -60,4 +62,23 @@ private:
   virtual void createBuffers() override;
 
   MTL::Buffer *indexBuffer;
+};
+
+/*
+ *    CIRCLE
+ */
+
+class Circle : public Primative{
+public:
+  Circle(MTL::Device *device);
+  ~Circle() override;
+
+  void draw(MTL::RenderCommandEncoder *encoder) override;
+
+private:
+   // Members
+   float radius {0.5};
+
+   // Methods
+    virtual void createBuffers() override;
 };

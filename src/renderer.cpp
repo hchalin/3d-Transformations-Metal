@@ -1,11 +1,19 @@
 #include "renderer.h"
 
-#define TRIANGLE
-#define QUAD
+//#define TRIANGLE
+//#define QUAD
+#define CIRCLE
 //#define LOG
 
+/**
+ * @brief Constructor for the Renderer class.
+ *
+ * Initializes the Metal device, command queue, and creates the triangle or quad object.
+ *
+ * @param window Reference to the Window object.
+ */
 Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), window(window),
-                                     triangle(nullptr), previousTime(std::chrono::high_resolution_clock::now()), totalTime(0.0),
+                                     triangle(nullptr),circle(nullptr), previousTime(std::chrono::high_resolution_clock::now()), totalTime(0.0),
                                      lastPrintedSecond(-1), frames(0)
 {
   // Get device from the windows metal layer
@@ -22,9 +30,10 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
 // Create triangle
 #ifdef TRIANGLE
   triangle = new Triangle(device);
-  // Attempt to downcast to Derived*
-  //Triangle* t_ptr = new Triangle(device);
 #endif /* TRIANGLE */
+#ifdef CIRCLE
+    circle = new Circle(device);
+#endif /* CIRCLE */
 
   // Create the command queue (created from the device)
   commandQueue = device->newCommandQueue()->retain();
@@ -32,7 +41,11 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
   // Render
   render();
 }
-
+/**
+ * @brief Destructor for the Renderer class.
+ *
+ * Cleans up allocated resources. Currently commented out due to segfault issues.
+ */
 Renderer::~Renderer()
 {
     // FIXME: There is a segfault here when deallocating?
@@ -56,7 +69,11 @@ Renderer::~Renderer()
     device = nullptr;
     */
 }
-
+/**
+ * @brief Main render loop.
+ *
+ * Continuously renders frames until the window is closed.
+ */
 void Renderer::render()
 {
 
@@ -115,6 +132,14 @@ void Renderer::render()
       }
 
 #endif /* TRIANGLE */
+#ifdef CIRCLE
+          if (circle)
+      {
+        circle->encodeRenderCommands(encoder); // Needs a RenderCommandEncoder, NOT CommandEncoder
+        circle->draw(encoder);
+      }
+
+#endif /* CIRCLE */
       encoder->endEncoding();
 
       // Present
@@ -136,6 +161,8 @@ void Renderer::logFPS()
   auto currentTime = Clock::now();
   std::chrono::duration<double> deltaTime = currentTime - previousTime;
   previousTime = currentTime;
+
+  std::cout << "Delta Time: " << deltaTime.count() << " seconds" << std::endl;
 
   // Increment frame count
   ++frames;
