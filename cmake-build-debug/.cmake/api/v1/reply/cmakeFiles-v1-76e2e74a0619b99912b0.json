@@ -206,8 +206,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/Users/haydenchalin/Desktop/Coding/Projects/Graphics/metal-cpp-sphere-cube/cmake-build-debug",
-		"source" : "/Users/haydenchalin/Desktop/Coding/Projects/Graphics/metal-cpp-sphere-cube"
+		"build" : "/Users/haydenchalin/CLionProjects/3d-transformations/cmake-build-debug",
+		"source" : "/Users/haydenchalin/CLionProjects/3d-transformations"
 	},
 	"version" : 
 	{

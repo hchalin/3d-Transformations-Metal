@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "test::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-test-Debug-a491b0ff75a402d86f72.json",
+					"jsonFile" : "target-test-Debug-73163bb84b08c37d4e03.json",
 					"name" : "test",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/haydenchalin/Desktop/Coding/Projects/Graphics/metal-cpp-sphere-cube/cmake-build-debug",
-		"source" : "/Users/haydenchalin/Desktop/Coding/Projects/Graphics/metal-cpp-sphere-cube"
+		"build" : "/Users/haydenchalin/CLionProjects/3d-transformations/cmake-build-debug",
+		"source" : "/Users/haydenchalin/CLionProjects/3d-transformations"
 	},
 	"version" : 
 	{

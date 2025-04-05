@@ -1,3 +1,3 @@
-/Users/haydenchalin/Desktop/Coding/Projects/Graphics/metal-cpp-sphere-cube/cmake-build-debug/CMakeFiles/test.dir
-/Users/haydenchalin/Desktop/Coding/Projects/Graphics/metal-cpp-sphere-cube/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/haydenchalin/Desktop/Coding/Projects/Graphics/metal-cpp-sphere-cube/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/haydenchalin/CLionProjects/3d-transformations/cmake-build-debug/CMakeFiles/test.dir
+/Users/haydenchalin/CLionProjects/3d-transformations/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/haydenchalin/CLionProjects/3d-transformations/cmake-build-debug/CMakeFiles/rebuild_cache.dir

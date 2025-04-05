@@ -1,4 +1,4 @@
-# Install script for directory: /Users/haydenchalin/Desktop/Coding/Projects/Graphics/metal-cpp-sphere-cube
+# Install script for directory: /Users/haydenchalin/CLionProjects/3d-transformations
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -52,6 +52,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "/Users/haydenchalin/Desktop/Coding/Projects/Graphics/metal-cpp-sphere-cube/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/Users/haydenchalin/CLionProjects/3d-transformations/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

@@ -67,7 +67,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/haydenchalin/Desktop/Coding/Projects/Graphics/metal-cpp-sphere-cube/cmake-build-debug"
+			"value" : "/Users/haydenchalin/CLionProjects/3d-transformations/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -116,6 +116,22 @@
 			],
 			"type" : "BOOL",
 			"value" : "ON"
+		},
+		{
+			"name" : "CMAKE_COLOR_MAKEFILE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "UNINITIALIZED",
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_COMMAND",
@@ -491,7 +507,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/haydenchalin/Desktop/Coding/Projects/Graphics/metal-cpp-sphere-cube/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "/Users/haydenchalin/CLionProjects/3d-transformations/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -503,7 +519,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "Ninja"
+			"value" : "Unix Makefiles"
 		},
 		{
 			"name" : "CMAKE_GENERATOR_INSTANCE",
@@ -563,7 +579,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/haydenchalin/Desktop/Coding/Projects/Graphics/metal-cpp-sphere-cube"
+			"value" : "/Users/haydenchalin/CLionProjects/3d-transformations"
 		},
 		{
 			"name" : "CMAKE_INSTALL_NAME_TOOL",
@@ -614,12 +630,16 @@
 			"properties" : 
 			[
 				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "Path to a program."
 				}
 			],
-			"type" : "UNINITIALIZED",
-			"value" : "/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja"
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/make"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -1259,7 +1279,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/haydenchalin/Desktop/Coding/Projects/Graphics/metal-cpp-sphere-cube/cmake-build-debug"
+			"value" : "/Users/haydenchalin/CLionProjects/3d-transformations/cmake-build-debug"
 		},
 		{
 			"name" : "Tri-Quad-Circle_IS_TOP_LEVEL",
@@ -1283,7 +1303,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/haydenchalin/Desktop/Coding/Projects/Graphics/metal-cpp-sphere-cube"
+			"value" : "/Users/haydenchalin/CLionProjects/3d-transformations"
 		},
 		{
 			"name" : "glfw3_DIR",
@@ -1296,42 +1316,6 @@
 			],
 			"type" : "PATH",
 			"value" : "/opt/homebrew/lib/cmake/glfw3"
-		},
-		{
-			"name" : "test_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "/Users/haydenchalin/Desktop/Coding/Projects/Graphics/metal-cpp-sphere-cube/cmake-build-debug"
-		},
-		{
-			"name" : "test_IS_TOP_LEVEL",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "ON"
-		},
-		{
-			"name" : "test_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "/Users/haydenchalin/Desktop/Coding/Projects/Graphics/metal-cpp-sphere-cube"
 		}
 	],
 	"kind" : "cache",
