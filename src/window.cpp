@@ -23,11 +23,15 @@ Window::Window()
 
 Window::~Window()
 {
-  if (metalLayer)
+  if (metalLayer) {
     metalLayer->release();
+   metalLayer = nullptr;
+  }
 
-  if (window)
+  if (window) {
     window->release();
+    window = nullptr;
+  }
 
   glfwDestroyWindow(glfwWindow);
   glfwTerminate();

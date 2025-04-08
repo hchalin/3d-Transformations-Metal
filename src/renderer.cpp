@@ -2,7 +2,7 @@
 
 //#define TRIANGLE
 //#define QUAD
-#define CIRCLE
+//#define CIRCLE
 //#define LOG
 
 /**
@@ -13,7 +13,7 @@
  * @param window Reference to the Window object.
  */
 Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), window(window),
-                                     triangle(nullptr),circle(nullptr), previousTime(std::chrono::high_resolution_clock::now()), totalTime(0.0),
+                                     triangle(nullptr), previousTime(std::chrono::high_resolution_clock::now()), totalTime(0.0),
                                      lastPrintedSecond(-1), frames(0)
 {
   // Get device from the windows metal layer
@@ -21,20 +21,23 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
   if (!device)
     throw std::runtime_error("Failed to get Metal Device");
 
-// Create quad
-#ifdef QUAD
-  quad = new Quad(device);
-  // quad = dynamic_cast<Quad*>(new Quad(device));
-#endif /* QUAD */
+  /*
+   *    Define triangle positions and colors, send to constructor.
+   */
+  // define primative pointers here
+  std::vector<float4> vertices = {
+    {-0.5, 0.5, 0.0, 1.0},
+    {0.25, 0.0, 0.0, 1.0},
+    {-0.5, -0.5, 0.0, 1.0}
+  };
+  // Colors
+  std::vector<float4> color = {
+      {0.5, 0.5, 0.5, 1.0}, // Gray color
+      {0.5, 0.5, 0.5, 1.0}, // Gray color
+      {0.5, 0.5, 0.5, 1.0}}; // Gray color
 
-// Create triangle
-#ifdef TRIANGLE
-  triangle = new Triangle(device);
-#endif /* TRIANGLE */
-#ifdef CIRCLE
-    circle = new Circle(device);
-#endif /* CIRCLE */
-
+  triangle = new Triangle(device, vertices, color);
+  //triangle = new Triangle(device);
   // Create the command queue (created from the device)
   commandQueue = device->newCommandQueue()->retain();
 
@@ -49,25 +52,15 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
 Renderer::~Renderer()
 {
     // FIXME: There is a segfault here when deallocating?
-    /*
   if (triangle)
   {
     delete triangle;
     triangle = nullptr;
   }
 
-  if (quad)
-  {
-    delete quad;
-    quad = nullptr;
-  }
-
   if (commandQueue)
     commandQueue->release();
 
-  if (device)
-    device = nullptr;
-    */
 }
 /**
  * @brief Main render loop.
@@ -108,38 +101,19 @@ void Renderer::render()
       // TEST: Disable depth test
       //renderPass->setDepthAttachment(nullptr);
 
-// Command encoder
-
+      // Command encoder
       MTL::RenderCommandEncoder *encoder = commandBuffer->renderCommandEncoder(renderPass);
       float currTime = sin(totalTime);
 
       encoder->setVertexBytes(&currTime, sizeof(float), 11);
 
-#ifdef QUAD
-      if (quad)
-      {
 
-        quad->encodeRenderCommands(encoder);
-        quad->draw(encoder);
-      }
 
-#endif /* QUAD */
-#ifdef TRIANGLE
-      if (triangle)
-      {
+      if (triangle) {
         triangle->encodeRenderCommands(encoder); // Needs a RenderCommandEncoder, NOT CommandEncoder
         triangle->draw(encoder);
       }
 
-#endif /* TRIANGLE */
-#ifdef CIRCLE
-          if (circle)
-      {
-        circle->encodeRenderCommands(encoder); // Needs a RenderCommandEncoder, NOT CommandEncoder
-        circle->draw(encoder);
-      }
-
-#endif /* CIRCLE */
       encoder->endEncoding();
 
       // Present

@@ -1,11 +1,12 @@
 CMakeFiles/test.dir/src/renderer.cpp.o: \
   /Users/haydenchalin/CLionProjects/3d-transformations/src/renderer.cpp \
   /Users/haydenchalin/CLionProjects/3d-transformations/src/renderer.h \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/Foundation.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSArray.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSObject.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSDefines.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSPrivate.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/Metal.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLAccelerationStructure.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLDefines.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSDefines.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLHeaderBridge.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLPrivate.hpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/objc/runtime.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/objc/objc.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1/stdlib.h \
@@ -129,7 +130,11 @@ CMakeFiles/test.dir/src/renderer.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1/stdbool.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdbool.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdarg.h \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSTypes.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/Foundation.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSArray.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSObject.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSPrivate.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSTypes.hpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/CoreFoundation.framework/Headers/CoreFoundation.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/assert.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1/ctype.h \
@@ -412,14 +417,14 @@ CMakeFiles/test.dir/src/renderer.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/CoreFoundation.framework/Headers/CFXMLNode.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/CoreFoundation.framework/Headers/CFXMLParser.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/objc/message.h \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSAutoreleasePool.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSBundle.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSNotification.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSDictionary.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSEnumerator.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSString.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSObjCRuntime.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSRange.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSAutoreleasePool.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSBundle.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSNotification.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSDictionary.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSEnumerator.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSString.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSObjCRuntime.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSRange.hpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1/functional \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1/__algorithm/search.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1/__algorithm/comp.h \
@@ -1004,25 +1009,18 @@ CMakeFiles/test.dir/src/renderer.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1/__functional/pointer_to_binary_function.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1/__functional/pointer_to_unary_function.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1/__functional/unary_negate.h \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSData.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSDate.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSError.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSLock.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSNumber.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSProcessInfo.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSSet.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSSharedPtr.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSURL.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/Metal.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLAccelerationStructure.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLDefines.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSDefines.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLHeaderBridge.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLPrivate.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSData.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSDate.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSError.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSLock.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSNumber.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSProcessInfo.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSSet.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSSharedPtr.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSURL.hpp \
   /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLAccelerationStructureTypes.hpp \
   /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLResource.hpp \
   /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLStageInputOutputDescriptor.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSRange.hpp \
   /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLTypes.hpp \
   /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLAccelerationStructureCommandEncoder.hpp \
   /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLArgument.hpp \
@@ -1133,8 +1131,6 @@ CMakeFiles/test.dir/src/renderer.cpp.o: \
   /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLBuffer.hpp \
   /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLCaptureManager.hpp \
   /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLCaptureScope.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSObject.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/../Foundation/NSString.hpp \
   /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLCommandBuffer.hpp \
   /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLCommandQueue.hpp \
   /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLComputeCommandEncoder.hpp \
@@ -1173,25 +1169,6 @@ CMakeFiles/test.dir/src/renderer.cpp.o: \
   /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLVertexDescriptor.hpp \
   /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLVisibleFunctionTable.hpp \
   /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Metal/MTLVersion.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/QuartzCore.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/CAMetalDrawable.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/../Metal/MTLDrawable.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/../Metal/MTLTexture.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/CADefines.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/../Foundation/NSDefines.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/CAPrivate.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/CAMetalLayer.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/../Metal/MTLPixelFormat.hpp \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGGeometry.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGBase.h \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/AppKit/AppKit.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/AppKit/AppKitPrivate.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/AppKit/NSApplication.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/AppKit/NSRunningApplication.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/AppKit/NSWindow.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/AppKit/NSView.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/AppKit/NSMenu.hpp \
-  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/AppKit/NSMenuItem.hpp \
   /Users/haydenchalin/CLionProjects/3d-transformations/src/window.h \
   /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/GLFW/glfw3.h \
   /Users/haydenchalin/CLionProjects/3d-transformations/src/backend/glfw_adaptor.h \
@@ -1405,6 +1382,8 @@ CMakeFiles/test.dir/src/renderer.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/ApplicationServices.framework/Frameworks/ATS.framework/Headers/SFNTLayoutTypes.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/CoreText.framework/Headers/SFNTLayoutTypes.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/ApplicationServices.framework/Frameworks/ATS.framework/Headers/ATSTypes.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGGeometry.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGBase.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/ApplicationServices.framework/Frameworks/ATS.framework/Headers/ATSFont.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/ApplicationServices.framework/Frameworks/ATS.framework/Headers/SFNTTypes.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/CoreText.framework/Headers/SFNTTypes.h \
@@ -1531,11 +1510,30 @@ CMakeFiles/test.dir/src/renderer.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/ApplicationServices.framework/Frameworks/ATSUI.framework/Headers/ATSUnicodeFlattening.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/ApplicationServices.framework/Frameworks/ATSUI.framework/Headers/ATSUnicodeDirectAccess.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/ApplicationServices.framework/Frameworks/SpeechSynthesis.framework/Headers/SpeechSynthesis.h \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/AppKit/AppKit.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/AppKit/AppKitPrivate.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/AppKit/NSApplication.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/AppKit/NSRunningApplication.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSObject.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/Foundation/NSPrivate.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/AppKit/NSWindow.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/AppKit/NSView.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/AppKit/NSMenu.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/AppKit/NSMenuItem.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/QuartzCore.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/CAMetalDrawable.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/../Metal/MTLDrawable.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/../Metal/MTLTexture.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/CADefines.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/../Foundation/NSDefines.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/CAPrivate.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/CAMetalLayer.hpp \
+  /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/QuartzCore/../Metal/MTLPixelFormat.hpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/CAMetalLayer.h \
-  /Users/haydenchalin/CLionProjects/3d-transformations/src/primative.h \
+  /Users/haydenchalin/CLionProjects/3d-transformations/src/./Primative/primative.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1/istream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1/ostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1/bitset \
-  /Users/haydenchalin/CLionProjects/3d-transformations/src/common/common.h \
-  /Users/haydenchalin/CLionProjects/3d-transformations/src/common/vec4.h
+  /Users/haydenchalin/CLionProjects/3d-transformations/src/./Primative/../common/common.h \
+  /Users/haydenchalin/CLionProjects/3d-transformations/src/./Primative/../common/vec4.h

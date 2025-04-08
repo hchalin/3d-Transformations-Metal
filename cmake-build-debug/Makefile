@@ -129,6 +129,30 @@ test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
 .PHONY : test/fast
 
+src/Primative/primative.o: src/Primative/primative.cpp.o
+.PHONY : src/Primative/primative.o
+
+# target to build an object file
+src/Primative/primative.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/Primative/primative.cpp.o
+.PHONY : src/Primative/primative.cpp.o
+
+src/Primative/primative.i: src/Primative/primative.cpp.i
+.PHONY : src/Primative/primative.i
+
+# target to preprocess a source file
+src/Primative/primative.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/Primative/primative.cpp.i
+.PHONY : src/Primative/primative.cpp.i
+
+src/Primative/primative.s: src/Primative/primative.cpp.s
+.PHONY : src/Primative/primative.s
+
+# target to generate assembly for a file
+src/Primative/primative.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/Primative/primative.cpp.s
+.PHONY : src/Primative/primative.cpp.s
+
 src/backend/glfw_adaptor.o: src/backend/glfw_adaptor.mm.o
 .PHONY : src/backend/glfw_adaptor.o
 
@@ -200,30 +224,6 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
-
-src/primative.o: src/primative.cpp.o
-.PHONY : src/primative.o
-
-# target to build an object file
-src/primative.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/primative.cpp.o
-.PHONY : src/primative.cpp.o
-
-src/primative.i: src/primative.cpp.i
-.PHONY : src/primative.i
-
-# target to preprocess a source file
-src/primative.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/primative.cpp.i
-.PHONY : src/primative.cpp.i
-
-src/primative.s: src/primative.cpp.s
-.PHONY : src/primative.s
-
-# target to generate assembly for a file
-src/primative.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/primative.cpp.s
-.PHONY : src/primative.cpp.s
 
 src/renderer.o: src/renderer.cpp.o
 .PHONY : src/renderer.o
@@ -306,6 +306,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... src/Primative/primative.o"
+	@echo "... src/Primative/primative.i"
+	@echo "... src/Primative/primative.s"
 	@echo "... src/backend/glfw_adaptor.o"
 	@echo "... src/backend/glfw_adaptor.i"
 	@echo "... src/backend/glfw_adaptor.s"
@@ -315,9 +318,6 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/primative.o"
-	@echo "... src/primative.i"
-	@echo "... src/primative.s"
 	@echo "... src/renderer.o"
 	@echo "... src/renderer.i"
 	@echo "... src/renderer.s"

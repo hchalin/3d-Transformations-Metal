@@ -14,6 +14,15 @@
 # EXTERNAL cache entries
 ########################
 
+//Value Computed by CMake
+3d-Transformations_BINARY_DIR:STATIC=/Users/haydenchalin/CLionProjects/3d-transformations/cmake-build-debug
+
+//Value Computed by CMake
+3d-Transformations_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+3d-Transformations_SOURCE_DIR:STATIC=/Users/haydenchalin/CLionProjects/3d-transformations
+
 //Path to a library.
 APPKIT:FILEPATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/AppKit.framework
 
@@ -149,7 +158,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=Tri-Quad-Circle
+CMAKE_PROJECT_NAME:STATIC=3d-Transformations
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION:STATIC=1.0.0

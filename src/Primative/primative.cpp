@@ -1,5 +1,5 @@
 #include "primative.h"
-#include "./shaders/readShaderFile.h"
+#include "../shaders/readShaderFile.h"
 
 /*
 -------------------------------------------------------------------
@@ -10,14 +10,14 @@
     Quad
 -------------------------------------------------------------------
 */
-Primative::Primative(MTL::Device *device) : device(device)
+Primitive::Primitive(MTL::Device *device) : device(device)
 {
 }
 
 /*
     Destructor
 */
-Primative::~Primative()
+Primitive::~Primitive()
 {
 
   if (vertexBuffer)
@@ -36,35 +36,35 @@ Primative::~Primative()
 /*
     CREATE VERTEX BUFFER
 */
-void Primative::createVertexBuffer(const std::vector<float4> &vertices)
+void Primitive::createVertexBuffer(const std::vector<float4> &vertices)
 {
   if (vertices.empty())
-    std::runtime_error("No vertices defined");
+    throw std::runtime_error("No vertices defined");
 
   vertexBuffer = device->newBuffer(vertices.data(), vertices.size() * sizeof(float4), MTL::ResourceStorageModeManaged);
 
   if (!vertexBuffer)
-    std::runtime_error("Failed to create vertex buffer");
+    throw std::runtime_error("Failed to create vertex buffer");
 }
 
 /*
     CREATE COLOR BUFFER
 */
-void Primative::createColorBuffer(const std::vector<float4> &color)
+void Primitive::createColorBuffer(const std::vector<float4> &color)
 {
   if (color.empty())
-    std::runtime_error("No color defined");
+    throw std::runtime_error("No color defined");
 
   colorBuffer = device->newBuffer(color.data(), color.size() * sizeof(float4), MTL::ResourceStorageModeManaged);
 
   if (!colorBuffer)
-    std::runtime_error("Failed to create vertex buffer");
+    throw std::runtime_error("Failed to create vertex buffer");
 }
 
 /*
     CREATE INDEX BUFFER
 */
-void Primative::createIndexBuffer(const std::vector<uint16_t> &indices)
+void Primitive::createIndexBuffer(const std::vector<uint16_t> &indices)
 {
   indexBuffer = device->newBuffer(indices.data(), indices.size() * sizeof(uint16_t), MTL::ResourceStorageModeManaged);
   if (indexBuffer)
@@ -74,7 +74,7 @@ void Primative::createIndexBuffer(const std::vector<uint16_t> &indices)
 /*
   CREATE RENDER PIPELINE STATE
 */
-void Primative::createRenderPipelineState()
+void Primitive::createRenderPipelineState()
 {
   // Uses helper function to load the shaders - using pre-compiled shaders is another approach
   const std::string fileName = "shaders.metal";
@@ -122,6 +122,8 @@ void Primative::createRenderPipelineState()
 
   /*
     OLD - no longer need the vertex descriptor
+        For anything more complicated than a primitive. Use a vertex descriptor.
+
   // Create and configure the vertex descriptor
   MTL::VertexDescriptor *vertexDescriptor = MTL::VertexDescriptor::alloc()->init();
 
@@ -165,7 +167,7 @@ void Primative::createRenderPipelineState()
 /*
     ENCODE RENDER COMMANDS
 */
-void Primative::encodeRenderCommands(MTL::RenderCommandEncoder *encoder)
+void Primitive::encodeRenderCommands(MTL::RenderCommandEncoder *encoder) const
 {
 
   /*
@@ -175,9 +177,9 @@ void Primative::encodeRenderCommands(MTL::RenderCommandEncoder *encoder)
       3: Compete Vertex buffer
   */
   if (!pipelineState)
-    std::runtime_error("No Pipeline State");
+    throw std::runtime_error("No Pipeline State");
   if (!vertexBuffer)
-    std::runtime_error("No Vertex Buffer");
+    throw std::runtime_error("No Vertex Buffer");
 
   if (!encoder)
   {
@@ -199,12 +201,47 @@ void Primative::encodeRenderCommands(MTL::RenderCommandEncoder *encoder)
     Triangle  ---------------------------------------------------------
 -------------------------------------------------------------------
 */
-Triangle::Triangle(MTL::Device *device) : Primative(device)
-{
-  createBuffers();
-  Primative::createRenderPipelineState();
+// Standard constructor
+Triangle::Triangle(MTL::Device *device) : Primitive(device) {
+    createBuffers();
+    createRenderPipelineState();
 }
+/**
+ * @brief Constructs a triangle with custom vertices and colors.
+ *
+ * Creates a triangle primitive with user-specified vertex positions and colors.
+ * The constructor automatically generates the appropriate indices (0,1,2) for the triangle
+ * and creates all necessary GPU buffers and render pipeline state.
+ *
+ * @param device The Metal device used to create buffers and pipeline state
+ * @param vertices A vector of float4 values representing the triangle's vertex positions
+ * @param color A vector of float4 values representing the color of each vertex
+ * @throws std::runtime_error If vertices or color vectors are empty
+ * @throws std::runtime_error If buffer creation fails
+ */
+Triangle::Triangle(MTL::Device *device, const std::vector<float4> &vertices,
+                   const std::vector<float4> &color): Primitive(device) {
+    if (vertices.empty())
+        throw std::runtime_error("No vertices defined");
+    if (color.empty())
+        throw std::runtime_error("No color defined");
+    createVertexBuffer(vertices);
+    createColorBuffer(color);
+    // define indices
+    std::vector<uint16_t> indices = {0, 1, 2};
+    Primitive::createIndexBuffer(indices);
 
+    createRenderPipelineState();
+}
+Triangle::~Triangle()
+{
+
+    if (indexBuffer)
+    {
+        indexBuffer->release();
+        indexBuffer = nullptr;
+    }
+}
 /*
       Draw ------
 */
@@ -226,18 +263,18 @@ void Triangle::createBuffers()
       {0.0, 0.5, 0.0, 1.0},
       {-0.5, -0.5, 0.0, 1.0},
       {0.5, -0.5, 0.0, 1.0}};
-  Primative::createVertexBuffer(positions);
+  Primitive::createVertexBuffer(positions);
 
   // Colors
   std::vector<float4> color = {
-      {1.0, 0.0, 0.0, 1.0},
-      {1.0, 0.0, 0.0, 1.0},
-      {1.0, 0.0, 0.0, 1.0}};
-  Primative::createColorBuffer(color);
+      {0.5, 0.5, 0.5, 1.0}, // Gray color
+      {0.5, 0.5, 0.5, 1.0}, // Gray color
+      {0.5, 0.5, 0.5, 1.0}}; // Gray color
+  Primitive::createColorBuffer(color);
 
   // Indexing
   std::vector<uint16_t> indices = {0, 1, 2};
-  Primative::createIndexBuffer(indices);
+  Primitive::createIndexBuffer(indices);
 
 }
 
@@ -246,10 +283,10 @@ void Triangle::createBuffers()
     Quad  ---------------------------------------------------------
 -------------------------------------------------------------------
 */
-Quad::Quad(MTL::Device *device) : Primative(device), indexBuffer(nullptr)
+Quad::Quad(MTL::Device *device) : Primitive(device), indexBuffer(nullptr)
 {
   createBuffers();
-  Primative::createRenderPipelineState();
+  Primitive::createRenderPipelineState();
 }
 
 Quad::~Quad()
@@ -271,7 +308,7 @@ void Quad::createBuffers()
       {0.5, -0.5, 0.0, 1.0}, // Bottom Right
       {-0.5, -0.5, 0.0, 1.0} // Bottom Left
   };
-  Primative::createVertexBuffer(positions);
+  Primitive::createVertexBuffer(positions);
   if (!vertexBuffer)
     throw std::runtime_error("Vertex buffer failed to create");
 
@@ -282,7 +319,7 @@ void Quad::createBuffers()
       {0.0, 0.0, 1.0, 1.0},
       {0.0, 0.0, 1.0, 1.0}};
 
-  Primative::createColorBuffer(color);
+  Primitive::createColorBuffer(color);
   if (!colorBuffer)
     throw std::runtime_error("Color buffer failed to create");
 
@@ -319,10 +356,10 @@ void Quad::draw(MTL::RenderCommandEncoder *encoder)
 //    Circle  ---------------------------------------------------------
 //-------------------------------------------------------------------
 
-Circle::Circle(MTL::Device *device): Primative(device) {
+Circle::Circle(MTL::Device *device): Primitive(device) {
     // Create the vertex buffer for the circle
     createBuffers();
-    Primative::createRenderPipelineState();
+    Primitive::createRenderPipelineState();
 }
 /*
     Destructor
@@ -352,14 +389,14 @@ void Circle::createBuffers() {
    std::vector<float4> positions;
    unsigned int vertexCount {100};
    float angle = (2 * M_PI) / vertexCount;
-   positions.push_back({0.0, 0.0, 0.0, 1.0});
+   positions.emplace_back(0.0, 0.0, 0.0, 1.0);
    for(int i {1}; i <= vertexCount; ++i){
        float x = radius * cos(i * angle);
        float y = radius * sin(i * angle);
        positions.emplace_back(x, y, 0.0, 1.0);
    }
 
-   Primative::createVertexBuffer(positions);
+   Primitive::createVertexBuffer(positions);
    if (!vertexBuffer) {
        throw std::runtime_error("Failed to create circles vertexBuffer");
    }
@@ -371,7 +408,7 @@ void Circle::createBuffers() {
    for (int i {0}; i <= vertexCount; ++i){
        color.emplace_back(0.4, 0.2, 0.3, 1.0);
    }
-   Primative::createColorBuffer(color);
+   Primitive::createColorBuffer(color);
     if (!colorBuffer)
         throw std::runtime_error("Color buffer failed to create");
 
@@ -413,3 +450,4 @@ void Circle::draw(MTL::RenderCommandEncoder *encoder) {
                                    indexBuffer,
                                    0); //
 }
+

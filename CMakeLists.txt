@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(Tri-Quad-Circle VERSION 1.0.0)
+project(3d-Transformations VERSION 1.0.0)
 
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 20)
@@ -11,7 +11,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "-g")
 
 add_executable(test
  src/common/vec4.cpp
- src/primative.cpp
+        src/Primative/primative.cpp
  #src/triangle.cpp
  #src/quad.cpp
  src/shaders/readShaderFile.cpp

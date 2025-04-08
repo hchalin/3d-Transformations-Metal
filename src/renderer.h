@@ -1,21 +1,16 @@
 #pragma once
 // Include Apple's framework headers for Metal and related APIs
-#include <Foundation/Foundation.hpp>
 #include <Metal/Metal.hpp>
-#include <QuartzCore/QuartzCore.hpp>
-#include <AppKit/AppKit.hpp>
 
 #include "window.h"
-//#include "triangle.h"
-//#include "quad.h"
-#include "primative.h"
+#include "./Primative/primative.h"
 
 #include <iostream>
 
 class Renderer
 {
 public:
-  Renderer(Window &window);
+  explicit Renderer(Window &window);
   ~Renderer();
 
   // Getter
@@ -35,9 +30,7 @@ private:
   //Quad* quad;
 
   // New objs using abc
-  Primative* triangle;    // Base ptr
-  Primative* quad;
-  Primative* circle;
+  Primitive* triangle;    // Base ptr
 
   std::chrono::high_resolution_clock::time_point previousTime;
   double totalTime;
