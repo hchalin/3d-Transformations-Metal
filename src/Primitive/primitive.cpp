@@ -1,4 +1,4 @@
-#include "primative.h"
+#include "primitive.h"
 #include "../shaders/readShaderFile.h"
 
 /*
@@ -12,6 +12,8 @@
 */
 Primitive::Primitive(MTL::Device *device) : device(device)
 {
+    // Transform
+    //transform = Transform();
 }
 
 /*
@@ -45,6 +47,7 @@ void Primitive::createVertexBuffer(const std::vector<float4> &vertices)
 
   if (!vertexBuffer)
     throw std::runtime_error("Failed to create vertex buffer");
+
 }
 
 /*
@@ -193,7 +196,14 @@ void Primitive::encodeRenderCommands(MTL::RenderCommandEncoder *encoder) const
   // Set vertex buffer
   encoder->setVertexBuffer(vertexBuffer, 0, 0); // Set vertexBuffer to buffer(0)
   encoder->setVertexBuffer(colorBuffer, 0, 1);  // Set colorBuffer to buffer(1)
-  // Index buffer is set when calling drawIndexedPrimatives()
+
+    // Send transform to shaders / gpu
+    const Eigen::Matrix4f& transformMatrix = transform.getMatrix();
+    encoder->setVertexBytes(transformMatrix.data(), sizeof(Eigen::Matrix4f), 2);
+}
+
+Transform &Primitive::getTransform() {
+    return transform;
 }
 
 /*

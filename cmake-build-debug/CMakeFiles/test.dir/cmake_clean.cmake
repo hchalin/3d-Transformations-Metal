@@ -1,8 +1,10 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/test.dir/src/Primative/primative.cpp.o"
-  "CMakeFiles/test.dir/src/Primative/primative.cpp.o.d"
+  "CMakeFiles/test.dir/src/Primitive/primitive.cpp.o"
+  "CMakeFiles/test.dir/src/Primitive/primitive.cpp.o.d"
   "CMakeFiles/test.dir/src/backend/glfw_adaptor.mm.o"
   "CMakeFiles/test.dir/src/backend/glfw_adaptor.mm.o.d"
+  "CMakeFiles/test.dir/src/common/Transform.cpp.o"
+  "CMakeFiles/test.dir/src/common/Transform.cpp.o.d"
   "CMakeFiles/test.dir/src/common/vec4.cpp.o"
   "CMakeFiles/test.dir/src/common/vec4.cpp.o.d"
   "CMakeFiles/test.dir/src/main.cpp.o"

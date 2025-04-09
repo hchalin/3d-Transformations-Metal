@@ -8,10 +8,10 @@
 #define MTL_PRIVATE_IMPLEMENTATION
 
 // Include Apple's framework headers for Metal and related APIs
-//#include <Foundation/Foundation.hpp>
-//#include <Metal/Metal.hpp>
-//#include <QuartzCore/QuartzCore.hpp>
-//#include <AppKit/AppKit.hpp>
+#include <Foundation/Foundation.hpp>
+#include <Metal/Metal.hpp>
+#include <QuartzCore/QuartzCore.hpp>
+#include <AppKit/AppKit.hpp>
 
 // Backend
 #include "backend/glfw_adaptor.h"

@@ -129,29 +129,29 @@ test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
 .PHONY : test/fast
 
-src/Primative/primative.o: src/Primative/primative.cpp.o
-.PHONY : src/Primative/primative.o
+src/Primitive/primitive.o: src/Primitive/primitive.cpp.o
+.PHONY : src/Primitive/primitive.o
 
 # target to build an object file
-src/Primative/primative.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/Primative/primative.cpp.o
-.PHONY : src/Primative/primative.cpp.o
+src/Primitive/primitive.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/Primitive/primitive.cpp.o
+.PHONY : src/Primitive/primitive.cpp.o
 
-src/Primative/primative.i: src/Primative/primative.cpp.i
-.PHONY : src/Primative/primative.i
+src/Primitive/primitive.i: src/Primitive/primitive.cpp.i
+.PHONY : src/Primitive/primitive.i
 
 # target to preprocess a source file
-src/Primative/primative.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/Primative/primative.cpp.i
-.PHONY : src/Primative/primative.cpp.i
+src/Primitive/primitive.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/Primitive/primitive.cpp.i
+.PHONY : src/Primitive/primitive.cpp.i
 
-src/Primative/primative.s: src/Primative/primative.cpp.s
-.PHONY : src/Primative/primative.s
+src/Primitive/primitive.s: src/Primitive/primitive.cpp.s
+.PHONY : src/Primitive/primitive.s
 
 # target to generate assembly for a file
-src/Primative/primative.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/Primative/primative.cpp.s
-.PHONY : src/Primative/primative.cpp.s
+src/Primitive/primitive.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/Primitive/primitive.cpp.s
+.PHONY : src/Primitive/primitive.cpp.s
 
 src/backend/glfw_adaptor.o: src/backend/glfw_adaptor.mm.o
 .PHONY : src/backend/glfw_adaptor.o
@@ -176,6 +176,30 @@ src/backend/glfw_adaptor.s: src/backend/glfw_adaptor.mm.s
 src/backend/glfw_adaptor.mm.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/backend/glfw_adaptor.mm.s
 .PHONY : src/backend/glfw_adaptor.mm.s
+
+src/common/Transform.o: src/common/Transform.cpp.o
+.PHONY : src/common/Transform.o
+
+# target to build an object file
+src/common/Transform.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/common/Transform.cpp.o
+.PHONY : src/common/Transform.cpp.o
+
+src/common/Transform.i: src/common/Transform.cpp.i
+.PHONY : src/common/Transform.i
+
+# target to preprocess a source file
+src/common/Transform.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/common/Transform.cpp.i
+.PHONY : src/common/Transform.cpp.i
+
+src/common/Transform.s: src/common/Transform.cpp.s
+.PHONY : src/common/Transform.s
+
+# target to generate assembly for a file
+src/common/Transform.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/src/common/Transform.cpp.s
+.PHONY : src/common/Transform.cpp.s
 
 src/common/vec4.o: src/common/vec4.cpp.o
 .PHONY : src/common/vec4.o
@@ -306,12 +330,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... src/Primative/primative.o"
-	@echo "... src/Primative/primative.i"
-	@echo "... src/Primative/primative.s"
+	@echo "... src/Primitive/primitive.o"
+	@echo "... src/Primitive/primitive.i"
+	@echo "... src/Primitive/primitive.s"
 	@echo "... src/backend/glfw_adaptor.o"
 	@echo "... src/backend/glfw_adaptor.i"
 	@echo "... src/backend/glfw_adaptor.s"
+	@echo "... src/common/Transform.o"
+	@echo "... src/common/Transform.i"
+	@echo "... src/common/Transform.s"
 	@echo "... src/common/vec4.o"
 	@echo "... src/common/vec4.i"
 	@echo "... src/common/vec4.s"

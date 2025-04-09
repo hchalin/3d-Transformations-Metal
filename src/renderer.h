@@ -1,9 +1,11 @@
 #pragma once
 // Include Apple's framework headers for Metal and related APIs
 #include <Metal/Metal.hpp>
+#include <simd/simd.h>
 
 #include "window.h"
-#include "./Primative/primative.h"
+#include "./Primitive/primitive.h"
+
 
 #include <iostream>
 
@@ -30,7 +32,8 @@ private:
   //Quad* quad;
 
   // New objs using abc
-  Primitive* triangle;    // Base ptr
+  Primitive* triangle1;    // Base ptr
+  Primitive* triangle2;    // Base ptr
 
   std::chrono::high_resolution_clock::time_point previousTime;
   double totalTime;

@@ -5,8 +5,8 @@
 #include <cstdlib>
 
 #include <Metal/Metal.hpp>
-#include "../common/common.h"
 #include "../common/vec4.h"
+#include "../common/Transform.h"
 
 
 class Primitive {
@@ -19,12 +19,16 @@ public:
 
     virtual void draw(MTL::RenderCommandEncoder *encoder) = 0;
 
+    Transform &getTransform();
+
 protected:
     MTL::Device *device{nullptr};
     MTL::Buffer *vertexBuffer{nullptr};
     MTL::Buffer *indexBuffer{nullptr};
     MTL::Buffer *colorBuffer{nullptr};
     MTL::RenderPipelineState *pipelineState{nullptr};
+
+    Transform transform;            // Each primitive 'has a' Transform obj
 
     void createRenderPipelineState();
 

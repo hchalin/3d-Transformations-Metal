@@ -8,8 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/haydenchalin/CLionProjects/3d-transformations/src/Primative/primative.cpp" "CMakeFiles/test.dir/src/Primative/primative.cpp.o" "gcc" "CMakeFiles/test.dir/src/Primative/primative.cpp.o.d"
+  "/Users/haydenchalin/CLionProjects/3d-transformations/src/Primitive/primitive.cpp" "CMakeFiles/test.dir/src/Primitive/primitive.cpp.o" "gcc" "CMakeFiles/test.dir/src/Primitive/primitive.cpp.o.d"
   "/Users/haydenchalin/CLionProjects/3d-transformations/src/backend/glfw_adaptor.mm" "CMakeFiles/test.dir/src/backend/glfw_adaptor.mm.o" "gcc" "CMakeFiles/test.dir/src/backend/glfw_adaptor.mm.o.d"
+  "/Users/haydenchalin/CLionProjects/3d-transformations/src/common/Transform.cpp" "CMakeFiles/test.dir/src/common/Transform.cpp.o" "gcc" "CMakeFiles/test.dir/src/common/Transform.cpp.o.d"
   "/Users/haydenchalin/CLionProjects/3d-transformations/src/common/vec4.cpp" "CMakeFiles/test.dir/src/common/vec4.cpp.o" "gcc" "CMakeFiles/test.dir/src/common/vec4.cpp.o.d"
   "/Users/haydenchalin/CLionProjects/3d-transformations/src/main.cpp" "CMakeFiles/test.dir/src/main.cpp.o" "gcc" "CMakeFiles/test.dir/src/main.cpp.o.d"
   "/Users/haydenchalin/CLionProjects/3d-transformations/src/renderer.cpp" "CMakeFiles/test.dir/src/renderer.cpp.o" "gcc" "CMakeFiles/test.dir/src/renderer.cpp.o.d"

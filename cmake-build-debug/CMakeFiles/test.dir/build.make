@@ -83,19 +83,19 @@ CMakeFiles/test.dir/src/common/vec4.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/common/vec4.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/haydenchalin/CLionProjects/3d-transformations/src/common/vec4.cpp -o CMakeFiles/test.dir/src/common/vec4.cpp.s
 
-CMakeFiles/test.dir/src/Primative/primative.cpp.o: CMakeFiles/test.dir/flags.make
-CMakeFiles/test.dir/src/Primative/primative.cpp.o: /Users/haydenchalin/CLionProjects/3d-transformations/src/Primative/primative.cpp
-CMakeFiles/test.dir/src/Primative/primative.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/haydenchalin/CLionProjects/3d-transformations/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/test.dir/src/Primative/primative.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/src/Primative/primative.cpp.o -MF CMakeFiles/test.dir/src/Primative/primative.cpp.o.d -o CMakeFiles/test.dir/src/Primative/primative.cpp.o -c /Users/haydenchalin/CLionProjects/3d-transformations/src/Primative/primative.cpp
+CMakeFiles/test.dir/src/Primitive/primitive.cpp.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/src/Primitive/primitive.cpp.o: /Users/haydenchalin/CLionProjects/3d-transformations/src/Primitive/primitive.cpp
+CMakeFiles/test.dir/src/Primitive/primitive.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/haydenchalin/CLionProjects/3d-transformations/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/test.dir/src/Primitive/primitive.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/src/Primitive/primitive.cpp.o -MF CMakeFiles/test.dir/src/Primitive/primitive.cpp.o.d -o CMakeFiles/test.dir/src/Primitive/primitive.cpp.o -c /Users/haydenchalin/CLionProjects/3d-transformations/src/Primitive/primitive.cpp
 
-CMakeFiles/test.dir/src/Primative/primative.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test.dir/src/Primative/primative.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/haydenchalin/CLionProjects/3d-transformations/src/Primative/primative.cpp > CMakeFiles/test.dir/src/Primative/primative.cpp.i
+CMakeFiles/test.dir/src/Primitive/primitive.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test.dir/src/Primitive/primitive.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/haydenchalin/CLionProjects/3d-transformations/src/Primitive/primitive.cpp > CMakeFiles/test.dir/src/Primitive/primitive.cpp.i
 
-CMakeFiles/test.dir/src/Primative/primative.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/Primative/primative.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/haydenchalin/CLionProjects/3d-transformations/src/Primative/primative.cpp -o CMakeFiles/test.dir/src/Primative/primative.cpp.s
+CMakeFiles/test.dir/src/Primitive/primitive.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/Primitive/primitive.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/haydenchalin/CLionProjects/3d-transformations/src/Primitive/primitive.cpp -o CMakeFiles/test.dir/src/Primitive/primitive.cpp.s
 
 CMakeFiles/test.dir/src/shaders/readShaderFile.cpp.o: CMakeFiles/test.dir/flags.make
 CMakeFiles/test.dir/src/shaders/readShaderFile.cpp.o: /Users/haydenchalin/CLionProjects/3d-transformations/src/shaders/readShaderFile.cpp
@@ -167,30 +167,46 @@ CMakeFiles/test.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/main.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/haydenchalin/CLionProjects/3d-transformations/src/main.cpp -o CMakeFiles/test.dir/src/main.cpp.s
 
+CMakeFiles/test.dir/src/common/Transform.cpp.o: CMakeFiles/test.dir/flags.make
+CMakeFiles/test.dir/src/common/Transform.cpp.o: /Users/haydenchalin/CLionProjects/3d-transformations/src/common/Transform.cpp
+CMakeFiles/test.dir/src/common/Transform.cpp.o: CMakeFiles/test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/haydenchalin/CLionProjects/3d-transformations/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/test.dir/src/common/Transform.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test.dir/src/common/Transform.cpp.o -MF CMakeFiles/test.dir/src/common/Transform.cpp.o.d -o CMakeFiles/test.dir/src/common/Transform.cpp.o -c /Users/haydenchalin/CLionProjects/3d-transformations/src/common/Transform.cpp
+
+CMakeFiles/test.dir/src/common/Transform.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test.dir/src/common/Transform.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/haydenchalin/CLionProjects/3d-transformations/src/common/Transform.cpp > CMakeFiles/test.dir/src/common/Transform.cpp.i
+
+CMakeFiles/test.dir/src/common/Transform.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test.dir/src/common/Transform.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/haydenchalin/CLionProjects/3d-transformations/src/common/Transform.cpp -o CMakeFiles/test.dir/src/common/Transform.cpp.s
+
 # Object files for target test
 test_OBJECTS = \
 "CMakeFiles/test.dir/src/common/vec4.cpp.o" \
-"CMakeFiles/test.dir/src/Primative/primative.cpp.o" \
+"CMakeFiles/test.dir/src/Primitive/primitive.cpp.o" \
 "CMakeFiles/test.dir/src/shaders/readShaderFile.cpp.o" \
 "CMakeFiles/test.dir/src/backend/glfw_adaptor.mm.o" \
 "CMakeFiles/test.dir/src/window.cpp.o" \
 "CMakeFiles/test.dir/src/renderer.cpp.o" \
-"CMakeFiles/test.dir/src/main.cpp.o"
+"CMakeFiles/test.dir/src/main.cpp.o" \
+"CMakeFiles/test.dir/src/common/Transform.cpp.o"
 
 # External object files for target test
 test_EXTERNAL_OBJECTS =
 
 test: CMakeFiles/test.dir/src/common/vec4.cpp.o
-test: CMakeFiles/test.dir/src/Primative/primative.cpp.o
+test: CMakeFiles/test.dir/src/Primitive/primitive.cpp.o
 test: CMakeFiles/test.dir/src/shaders/readShaderFile.cpp.o
 test: CMakeFiles/test.dir/src/backend/glfw_adaptor.mm.o
 test: CMakeFiles/test.dir/src/window.cpp.o
 test: CMakeFiles/test.dir/src/renderer.cpp.o
 test: CMakeFiles/test.dir/src/main.cpp.o
+test: CMakeFiles/test.dir/src/common/Transform.cpp.o
 test: CMakeFiles/test.dir/build.make
 test: /opt/homebrew/lib/libglfw.3.4.dylib
 test: CMakeFiles/test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/haydenchalin/CLionProjects/3d-transformations/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/haydenchalin/CLionProjects/3d-transformations/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
