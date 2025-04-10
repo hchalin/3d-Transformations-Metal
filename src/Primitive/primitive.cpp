@@ -197,9 +197,12 @@ void Primitive::encodeRenderCommands(MTL::RenderCommandEncoder *encoder) const
   encoder->setVertexBuffer(vertexBuffer, 0, 0); // Set vertexBuffer to buffer(0)
   encoder->setVertexBuffer(colorBuffer, 0, 1);  // Set colorBuffer to buffer(1)
 
-    // Send transform to shaders / gpu
+    /*
+     *  Always send transform matrix to GPU, even if there are not transformations.
+     */
+
     const Eigen::Matrix4f& transformMatrix = transform.getMatrix();
-    encoder->setVertexBytes(transformMatrix.data(), sizeof(Eigen::Matrix4f), 2);
+    encoder->setVertexBytes(transformMatrix.data(), sizeof(Eigen::Matrix4f), 11);
 }
 
 Transform &Primitive::getTransform() {

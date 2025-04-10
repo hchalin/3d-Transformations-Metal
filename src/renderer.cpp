@@ -50,6 +50,13 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
       {1.0, 0.0, 0.0, 1.0}, // Gray color
       {1.0, 0.0, 0.0, 1.0}}; // Gray color
   triangle2 = new Triangle(device, position, color);
+  Transform &matrix = triangle2->getTransform();
+  matrix.reset();
+  std::cout << "Before: \n" << matrix << std::endl;
+  //matrix.setRotation(pi/2, 0, 0, 1);
+  //matrix.setTranslation(.3, -0.4, 0);
+  matrix.setScale(.3, .3, .3);
+  std::cout << "After: \n" << matrix << std::endl;
   // Create the command queue (created from the device)
   commandQueue = device->newCommandQueue()->retain();
 
@@ -111,8 +118,11 @@ void Renderer::render()
       colorAttachment->setStoreAction(MTL::StoreActionStore);
 
 
-      // Command encoder
+      /*
+       *      Encoding
+       */
       MTL::RenderCommandEncoder *encoder = commandBuffer->renderCommandEncoder(renderPass);
+
       {
       //float currTime = sin(totalTime);
       //std::cout << currTime << std::endl;
@@ -126,9 +136,6 @@ void Renderer::render()
         triangle1->draw(encoder);
       }
       if (triangle2) {
-        Transform& transformMatrix = triangle2->getTransform();
-        transformMatrix.reset();
-
         triangle2->encodeRenderCommands(encoder); // Needs a RenderCommandEncoder, NOT CommandEncoder
         triangle2->draw(encoder);
       }

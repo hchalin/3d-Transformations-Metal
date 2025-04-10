@@ -14,7 +14,6 @@ Transform::Transform() {
 
 void Transform::setTranslation(float x, float y, float z) {
 
-
     Eigen::Matrix4f translationMatrix = Eigen::Matrix4f::Identity();
     translationMatrix(0, 3) = x;
     translationMatrix(1, 3) = y;
@@ -50,4 +49,13 @@ void Transform::reset() {
 
 const Eigen::Matrix4f& Transform::getMatrix() const {
     return transformMatrix;
+}
+
+/*
+ *      Operator overloads
+ */
+
+std::ostream& operator<<(std::ostream& os, const Transform& transform) {
+    os << transform.getMatrix();
+    return os;
 }

@@ -8107,6 +8107,7 @@ CMakeFiles/test.dir/src/renderer.cpp.o: /Users/haydenchalin/CLionProjects/3d-tra
   /Users/haydenchalin/CLionProjects/3d-transformations/src/common/vec4.h \
   /Users/haydenchalin/CLionProjects/3d-transformations/src/Primitive/primitive.h \
   /Users/haydenchalin/CLionProjects/3d-transformations/src/backend/glfw_adaptor.h \
+  /Users/haydenchalin/CLionProjects/3d-transformations/src/common/common.h \
   /Users/haydenchalin/CLionProjects/3d-transformations/src/renderer.h \
   /Users/haydenchalin/CLionProjects/3d-transformations/src/window.h
 
@@ -15308,6 +15309,8 @@ CMakeFiles/test.dir/src/window.cpp.o: /Users/haydenchalin/CLionProjects/3d-trans
 /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/eigen/Eigen/src/QR/CompleteOrthogonalDecomposition.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1/__algorithm/pstl_backends/cpu_backends/backend.h:
+
+/Users/haydenchalin/CLionProjects/3d-transformations/src/common/common.h:
 
 /Users/haydenchalin/CLionProjects/3d-transformations/dependencies/eigen/Eigen/src/Core/PermutationMatrix.h:
 

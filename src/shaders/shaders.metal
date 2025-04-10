@@ -13,11 +13,11 @@ struct VertexOut {
 vertex VertexOut vertex_main(
     constant float4 *positions [[buffer(0)]],
     constant float4 *color [[buffer(1)]],
-    constant float4x4 &transform [[buffer(2)]],
+    constant float4x4 &matrix [[buffer(11)]],
     uint vertexID [[vertex_id]]
     ) {
     VertexOut out;
-    out.position = transform * positions[vertexID]; // Pass position to clip space
+    out.position = matrix * positions[vertexID]; // Pass position to clip space
     out.color = color[vertexID];
     // Compute color based on position
 

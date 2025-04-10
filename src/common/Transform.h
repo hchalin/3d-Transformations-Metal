@@ -34,6 +34,9 @@ public:
     // Reset to identity Matrix
     void reset();
 
+    // Opertor overload
+    friend std::ostream& operator<<(std::ostream& os, const Transform& transform);
+
     const Matrix4f &getMatrix() const;
 
 private:
