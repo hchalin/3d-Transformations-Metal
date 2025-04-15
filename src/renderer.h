@@ -34,6 +34,7 @@ private:
   // New objs using abc
   Primitive* triangle1;    // Base ptr
   Primitive* triangle2;    // Base ptr
+  Primitive* quad1;
 
   std::chrono::high_resolution_clock::time_point previousTime;
   double totalTime;

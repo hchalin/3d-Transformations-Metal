@@ -38,7 +38,7 @@ protected:
 
     void createIndexBuffer(const std::vector<uint16_t> &indices);
 
-    virtual void createBuffers() = 0;
+    virtual void createDefaultBuffers() = 0;
 };
 
 /*
@@ -53,7 +53,7 @@ public:
     void draw(MTL::RenderCommandEncoder *encoder) override;
 
 protected:
-    void createBuffers() override;
+    void createDefaultBuffers() override;
 };
 
 /*
@@ -62,13 +62,14 @@ protected:
 class Quad final : public Primitive {
 public:
     explicit Quad(MTL::Device *device);
+    Quad(MTL::Device *device, const std::vector<float4> & vertices, const std::vector<float4> & color);
 
     ~Quad() override;
 
     void draw(MTL::RenderCommandEncoder *encoder) override;
 
 private:
-    void createBuffers() override;
+    void createDefaultBuffers() override;
 
     MTL::Buffer *indexBuffer;
 };
@@ -90,5 +91,5 @@ private:
     float radius{0.5};
 
     // Methods
-    void createBuffers() override;
+    void createDefaultBuffers() override;
 };

@@ -189,6 +189,7 @@ void Primitive::encodeRenderCommands(MTL::RenderCommandEncoder *encoder) const
     std::cerr << "Invalid encoder" << std::endl;
     return;
   }
+
   // encoder->setTriangleFillMode(MTL::TriangleFillMode::TriangleFillModeLines);
   //  set renderpipeline state using encoder
   encoder->setRenderPipelineState(pipelineState);
@@ -216,7 +217,7 @@ Transform &Primitive::getTransform() {
 */
 // Standard constructor
 Triangle::Triangle(MTL::Device *device) : Primitive(device) {
-    createBuffers();
+    createDefaultBuffers();
     createRenderPipelineState();
 }
 /**
@@ -269,7 +270,7 @@ void Triangle::draw(MTL::RenderCommandEncoder *encoder)
                                  0); //
 }
 
-void Triangle::createBuffers()
+void Triangle::createDefaultBuffers()
 {
   // Positions
   std::vector<float4> positions = {
@@ -296,10 +297,55 @@ void Triangle::createBuffers()
     Quad  ---------------------------------------------------------
 -------------------------------------------------------------------
 */
+
+/**
+ * @brief Constructs a Quad primitive with default buffers.
+ *
+ * This constructor initializes a Quad object with default vertex, color, and index buffers.
+ * It also creates the render pipeline state required for rendering the Quad.
+ *
+ * @param device The Metal device used to create buffers and pipeline state.
+ */
 Quad::Quad(MTL::Device *device) : Primitive(device), indexBuffer(nullptr)
 {
-  createBuffers();
+    // default
+  createDefaultBuffers();
   Primitive::createRenderPipelineState();
+}
+
+/**
+ * @brief Constructs a Quad with custom vertices and colors.
+ *
+ * This constructor initializes a Quad object with user-defined vertex positions and colors.
+ * It creates the necessary GPU buffers (vertex, color, and index buffers) and sets up the render pipeline state.
+ *
+ * @param device The Metal device used to create buffers and pipeline state.
+ * @param vertices A vector of float4 values representing the positions of the quad's vertices.
+ * @param color A vector of float4 values representing the color of each vertex.
+ * @throws std::runtime_error If the vertices or color vectors are empty.
+ * @throws std::runtime_error If buffer creation fails.
+ */
+Quad::Quad(MTL::Device * device, const std::vector<float4> &vertices, const std::vector<float4> &color): Primitive(device) {
+    // custom
+    if (vertices.empty())
+        throw std::runtime_error("No vertices defined");
+    if (color.empty())
+        throw std::runtime_error("No color defined");
+
+    createVertexBuffer(vertices);
+
+    createColorBuffer(color);
+  // Indexing
+  std::vector<uint16_t> indices = {
+      // First tringle
+      0, 2, 3,
+      // Second triangle
+      0, 1, 2};
+  //Primative::createIndexBuffer(indices);
+    indexBuffer = device->newBuffer(indices.data(), indices.size() * sizeof(float4), MTL::ResourceStorageModeManaged);
+    //Primitive::createIndexBuffer(indices);        // FIXME: I cannot call this method with a quad????
+
+    createRenderPipelineState();
 }
 
 Quad::~Quad()
@@ -312,16 +358,16 @@ Quad::~Quad()
   }
 }
 
-void Quad::createBuffers()
+void Quad::createDefaultBuffers()
 {
   // Positions
-  std::vector<float4> positions = {
+  std::vector<float4> vertices = {
       {-0.5, 0.5, 0.0, 1.0}, // Top Left
       {0.5, 0.5, 0.0, 1.0},  // Top Right
       {0.5, -0.5, 0.0, 1.0}, // Bottom Right
       {-0.5, -0.5, 0.0, 1.0} // Bottom Left
   };
-  Primitive::createVertexBuffer(positions);
+  Primitive::createVertexBuffer(vertices);
   if (!vertexBuffer)
     throw std::runtime_error("Vertex buffer failed to create");
 
@@ -371,7 +417,7 @@ void Quad::draw(MTL::RenderCommandEncoder *encoder)
 
 Circle::Circle(MTL::Device *device): Primitive(device) {
     // Create the vertex buffer for the circle
-    createBuffers();
+    createDefaultBuffers();
     Primitive::createRenderPipelineState();
 }
 /*
@@ -395,7 +441,7 @@ Circle::~Circle()
 
 }
 
-void Circle::createBuffers() {
+void Circle::createDefaultBuffers() {
    /*
     * Position
     */

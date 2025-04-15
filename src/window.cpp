@@ -8,7 +8,8 @@ Window::Window()
   // disable GLFW's default behavior of creating an OpenGL context
   glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 
-  glfwWindow = glfwCreateWindow(800, 600, "Abstract Window", nullptr, nullptr);
+  //glfwWindow = glfwCreateWindow(800, 600, "Abstract Window", nullptr, nullptr);
+  glfwWindow = glfwCreateWindow(600, 600, "Abstract Window", nullptr, nullptr);
 
   if (!glfwWindow)
     std::runtime_error("Failed to create window");

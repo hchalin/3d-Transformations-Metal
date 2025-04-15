@@ -19,7 +19,6 @@
  * - Use this class to manage the position, orientation, and size of 3D objects.
  * - The class is intended to be used as a member of other classes, such as a Primitive.
  */
-
 using Matrix4f = Eigen::Matrix4f;
 
 class Transform final {
@@ -36,6 +35,7 @@ public:
 
     // Opertor overload
     friend std::ostream& operator<<(std::ostream& os, const Transform& transform);
+    //friend void operator*(float scale);         // Scale entire matrix by single value
 
     const Matrix4f &getMatrix() const;
 

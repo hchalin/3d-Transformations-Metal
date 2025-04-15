@@ -2,7 +2,7 @@
 #include "renderer.h"
 
 //#define TRIANGLE
-//#define QUAD
+#define QUAD
 //#define CIRCLE
 //#define LOG
 
@@ -14,7 +14,7 @@
  * @param window Reference to the Window object.
  */
 Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), window(window),
-                                     triangle1(nullptr),triangle2(nullptr), previousTime(std::chrono::high_resolution_clock::now()), totalTime(0.0),
+                                     triangle1(nullptr),triangle2(nullptr),quad1(nullptr), previousTime(std::chrono::high_resolution_clock::now()), totalTime(0.0),
                                      lastPrintedSecond(-1), frames(0)
 {
   // Get device from the windows metal layer
@@ -23,14 +23,43 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
     throw std::runtime_error("Failed to get Metal Device");
 
   /*
+   *    Quad
+   */
+#ifdef QUAD
+
+  std::vector<float4> color = {
+    {0.5, 0.5, 0.5, 1.0}, // Gray color
+    {0.5, 0.5, 0.5, 1.0}, // Gray color
+    {0.5, 0.5, 0.5, 1.0}, // Gray color
+    {0.5, 0.5, 0.5, 1.0}
+  };
+
+  std::vector<float4> positions = {
+    {-0.75, 0.75, 0.0, 1.0},
+    {0.0, 0.75, 0.0, 1.0},
+    {0.0, 0.0, 0.0, 1.0},
+    {-0.75, 0.0, 0.0, 1.0}
+  };
+  quad1 = new Quad(device, positions, color );
+
+
+#endif /* QUAD */
+  /*
+   *      Triangle
+   */
+#ifdef TRIANGLE
+  /*
    *    Define triangle positions and colors, send to constructor.
    */
   // define primative pointers here
   std::vector<float4> position = {
-    {-0.5, 0.5, 0.0, 1.0},
-    {0.25, 0.0, 0.0, 1.0},
-    {-0.5, -0.5, 0.0, 1.0}
+    {-0.7, 0.8, 0.0, 1.0},
+    {-0.7, -0.5, 0.0, 1.0},
+    {0.4, 0.1, 0.0, 1.0}
   };
+
+
+
   // Colors
   std::vector<float4> color = {
       {0.5, 0.5, 0.5, 1.0}, // Gray color
@@ -38,25 +67,23 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
       {0.5, 0.5, 0.5, 1.0}}; // Gray color
 
   triangle1 = new Triangle(device, position, color);
-  // Example new position
-   //position = {
-    //{0.0, 0.5, 0.0, 1.0},
-    //{0.5, -0.5, 0.0, 1.0},
-    //{-0.5, -0.5, 0.0, 1.0}
-  //};
   // Colors
    color = {
-      {1.0, 0.0, 0.0, 1.0}, // Gray color
-      {1.0, 0.0, 0.0, 1.0}, // Gray color
-      {1.0, 0.0, 0.0, 1.0}}; // Gray color
+      {1.0, 0.0, 0.0, 1.0}, // Red color
+      {1.0, 0.0, 0.0, 1.0}, // Red color
+      {1.0, 0.0, 0.0, 1.0}}; // Red color
   triangle2 = new Triangle(device, position, color);
   Transform &matrix = triangle2->getTransform();
   matrix.reset();
   std::cout << "Before: \n" << matrix << std::endl;
-  //matrix.setRotation(pi/2, 0, 0, 1);
-  //matrix.setTranslation(.3, -0.4, 0);
-  matrix.setScale(.3, .3, .3);
+  matrix.setRotation(-pi/2, 0, 0, 1);
+  matrix.setScale(.5,.5,.5);
+  matrix.setTranslation(0, -0.3, 0);
   std::cout << "After: \n" << matrix << std::endl;
+#endif /* TRIANGLE */
+  /*
+   *Command Queue
+   */
   // Create the command queue (created from the device)
   commandQueue = device->newCommandQueue()->retain();
 
@@ -129,7 +156,10 @@ void Renderer::render()
       //encoder->setVertexBytes(&currTime, sizeof(float), 11);
       }
 
-
+      if (quad1) {
+        quad1->encodeRenderCommands(encoder); // Needs a RenderCommandEncoder, NOT CommandEncoder
+        quad1->draw(encoder);
+      }
 
       if (triangle1) {
         triangle1->encodeRenderCommands(encoder); // Needs a RenderCommandEncoder, NOT CommandEncoder
