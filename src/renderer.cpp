@@ -14,7 +14,7 @@
  * @param window Reference to the Window object.
  */
 Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), window(window),
-                                     triangle1(nullptr),triangle2(nullptr),quad1(nullptr), previousTime(std::chrono::high_resolution_clock::now()), totalTime(0.0),
+                                     triangle1(nullptr),triangle2(nullptr),quad1(nullptr),quad2(nullptr), previousTime(std::chrono::high_resolution_clock::now()), totalTime(0.0),
                                      lastPrintedSecond(-1), frames(0)
 {
   // Get device from the windows metal layer
@@ -41,6 +41,20 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
     {-0.75, 0.0, 0.0, 1.0}
   };
   quad1 = new Quad(device, positions, color );
+
+  // Quad 2
+  color = {
+      {1.0, 0.0, 0.0, 1.0}, // Red color
+      {1.0, 0.0, 0.0, 1.0}, // Red color
+      {1.0, 0.0, 0.0, 1.0}, // Red color
+      {1.0, 0.0, 0.0, 1.0}
+  };
+
+  quad2 = new Quad(device, positions, color );
+  Transform &matrix = quad2->getTransform();
+  matrix.setTranslation(.5f, -.5f, 0);
+
+
 
 
 #endif /* QUAD */
@@ -159,6 +173,10 @@ void Renderer::render()
       if (quad1) {
         quad1->encodeRenderCommands(encoder); // Needs a RenderCommandEncoder, NOT CommandEncoder
         quad1->draw(encoder);
+      }
+      if (quad2) {
+        quad2->encodeRenderCommands(encoder); // Needs a RenderCommandEncoder, NOT CommandEncoder
+        quad2->draw(encoder);
       }
 
       if (triangle1) {

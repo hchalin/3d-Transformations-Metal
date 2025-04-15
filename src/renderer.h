@@ -35,6 +35,7 @@ private:
   Primitive* triangle1;    // Base ptr
   Primitive* triangle2;    // Base ptr
   Primitive* quad1;
+  Primitive* quad2;
 
   std::chrono::high_resolution_clock::time_point previousTime;
   double totalTime;
