@@ -67,6 +67,7 @@ void Transform::setScale(float x, float y, float z) {
     scaleMatrix(2, 2) = z;
 
     transformMatrix = scaleMatrix * transformMatrix;
+
 }
 /**
  * @brief Resets the transformation matrix to the identity matrix.
@@ -84,8 +85,9 @@ const Eigen::Matrix4f& Transform::getMatrix() const {
 }
 
 /*
- *      Operator overloads
+ *      Operator overloads  ---------------------
  */
+
 /**
  * @brief Overloads the stream insertion operator to output the transformation matrix.
  *

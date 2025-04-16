@@ -40,6 +40,7 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
     {0.0, 0.0, 0.0, 1.0},
     {-0.75, 0.0, 0.0, 1.0}
   };
+
   quad1 = new Quad(device, positions, color );
 
   // Quad 2
@@ -52,7 +53,8 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
 
   quad2 = new Quad(device, positions, color );
   Transform &matrix = quad2->getTransform();
-  matrix.setTranslation(.5f, -.5f, 0);
+  matrix.setRotation(-pi, 0, 0, 1);
+  matrix.setScale(.5, .5, 0);
 
 
 
@@ -90,7 +92,7 @@ Renderer::Renderer(Window &window) : device(nullptr), commandQueue(nullptr), win
   Transform &matrix = triangle2->getTransform();
   matrix.reset();
   std::cout << "Before: \n" << matrix << std::endl;
-  matrix.setRotation(-pi/2, 0, 0, 1);
+  matrix.setRotation(-pi, 0, 0, 1);
   matrix.setScale(.5,.5,.5);
   matrix.setTranslation(0, -0.3, 0);
   std::cout << "After: \n" << matrix << std::endl;
